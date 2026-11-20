@@ -31,14 +31,14 @@ const PALETTE = ["#0b5ed7", "#d50032", "#15803d", "#f59e0b", "#7c3aed", "#0891b2
 
 const CATEGORY_WORDS = {
   "Frozen": ["frozen", "ice cream", "popsicle", "novelty", "frozen pizza", "frozen dinner", "frozen fruit", "frozen vegetable"],
-  "Dairy & Eggs": ["milk", "almond milk", "soy milk", "oat milk", "cheese", "yogurt", "butter", "egg", "cream", "cottage cheese", "sour cream", "half and half", "creamer", "dairy"],
-  "Meat & Seafood": ["chicken breast", "chicken", "ground beef", "beef", "pork", "turkey", "bacon", "sausage", "ham", "fish", "salmon", "shrimp", "tuna", "steak", "rib", "brisket", "wing", "thigh", "breast", "deli meat", "hot dog", "seafood", "meat"],
+  "Dairy & Eggs": ["milk", "almond milk", "almondmilk", "soy milk", "soymilk", "oat milk", "oatmilk", "cheese", "yogurt", "butter", "egg", "cream", "cottage cheese", "sour cream", "half and half", "creamer", "dairy"],
+  "Meat & Seafood": ["chicken breast", "chicken", "ground beef", "beef", "pork", "turkey", "bacon", "sausage", "ham", "fish", "salmon", "shrimp", "tuna", "steak", "rib", "brisket", "wing", "thigh", "breast", "deli meat", "hot dog", "seafood", "meat", "tilapia"],
   "Bakery": ["bread", "bagel", "tortilla", "bun", "roll", "muffin", "croissant", "cake", "pie", "donut", "bakery", "baguette"],
   "Produce": ["apple", "banana", "orange", "grape", "berry", "strawberry", "blueberry", "raspberry", "blackberry", "avocado", "tomato", "potato", "sweet potato", "onion", "lettuce", "spinach", "kale", "carrot", "broccoli", "cucumber", "bell pepper", "mushroom", "corn", "celery", "cabbage", "zucchini", "squash", "melon", "watermelon", "pineapple", "mango", "peach", "pear", "lemon", "lime", "produce"],
-  "Household": ["paper towel", "toilet paper", "trash bag", "detergent", "laundry detergent", "dish soap", "soap", "shampoo", "toothpaste", "cleaner", "disinfect", "tissue", "diaper", "wipes", "foil", "wrap", "sponge", "dishwasher", "laundry", "bleach", "deodorant", "body wash", "razor", "floss", "paper plate", "napkin", "kitchen towel"],
+  "Household": ["paper towel", "toilet paper", "trash bag", "detergent", "laundry detergent", "dish soap", "soap", "shampoo", "conditioner", "toothpaste", "cleaner", "disinfect", "tissue", "diaper", "wipes", "foil", "wrap", "sponge", "dishwasher", "laundry", "bleach", "deodorant", "body wash", "razor", "floss", "paper plate", "napkin", "kitchen towel"],
   "Beverages": ["coffee", "tea", "orange juice", "apple juice", "juice", "soda", "cola", "pepsi", "sprite", "sparkling water", "water", "sparkling", "energy drink", "sports drink", "beer", "wine", "seltzer", "drink", "kombucha", "lemonade", "cider"],
   "Snacks": ["chips", "cookie", "cracker", "candy", "chocolate", "pretzel", "popcorn", "nuts", "peanut", "almond", "cashew", "granola bar", "protein bar", "snack", "trail mix", "raisin", "fruit snack"],
-  "Pantry": ["rice", "pasta", "spaghetti", "noodle", "cereal", "oat", "flour", "sugar", "salt", "oil", "vinegar", "sauce", "ketchup", "mustard", "mayo", "peanut butter", "jelly", "jam", "honey", "soup", "broth", "stock", "bean", "canned", "lentil", "spice", "seasoning", "dressing", "baking", "canned tomato", "pumpkin", "stuffing", "gravy", "cranberry", "yams", "pasta sauce", "mac and cheese", "ramen", "cake mix"],
+  "Pantry": ["rice", "pasta", "spaghetti", "noodle", "cereal", "oat", "flour", "sugar", "salt", "oil", "vinegar", "sauce", "ketchup", "mustard", "mayo", "peanut butter", "jelly", "jam", "honey", "soup", "broth", "stock", "bean", "canned", "lentil", "spice", "seasoning", "dressing", "baking", "canned tomato", "pumpkin", "stuffing", "gravy", "cranberry", "yams", "pasta sauce", "mac and cheese", "ramen", "cake mix", "pickle", "olive", "hummus", "salsa"],
 };
 
 const CATEGORY_NAMES = Object.keys(CATEGORY_WORDS);
@@ -56,9 +56,66 @@ const EXTRA_GROCERY_TERMS = [
   "pepper", "mushroom", "corn", "bean", "peas", "rice", "paper towel",
   "toilet paper", "detergent", "soap", "shampoo", "toothpaste", "trash",
   "cleaner", "tissue", "diaper", "wipes", "foil", "wrap",
+  "pickles", "olives", "hummus", "tilapia", "salsa", "conditioner",
 ];
 
 const GROCERY_TERMS = [...new Set([...Object.values(CATEGORY_WORDS).flat(), ...EXTRA_GROCERY_TERMS])];
+
+// Queries used to build the everyday shelf-price snapshot. These are the words
+// people actually type, and they double as the matching key between stores.
+const SHELF_TERMS = [
+  "milk", "almond milk", "oat milk", "cheese", "cheddar cheese", "yogurt",
+  "greek yogurt", "butter", "eggs", "cream", "cottage cheese", "sour cream",
+  "chicken breast", "chicken thighs", "ground beef", "steak", "pork chops",
+  "bacon", "sausage", "deli turkey", "hot dogs", "salmon", "shrimp", "tilapia",
+  "bread", "bagels", "tortillas", "hamburger buns", "muffins", "croissants",
+  "bananas", "apples", "oranges", "grapes", "strawberries", "blueberries",
+  "raspberries", "avocados", "tomatoes", "potatoes", "sweet potatoes",
+  "onions", "lettuce", "spinach", "carrots", "broccoli", "cucumbers",
+  "bell peppers", "mushrooms", "corn", "celery", "lemons", "limes",
+  "watermelon", "pineapple",
+  "rice", "pasta", "spaghetti", "cereal", "oatmeal", "flour", "sugar",
+  "olive oil", "vegetable oil", "ketchup", "mustard", "mayonnaise",
+  "peanut butter", "jelly", "canned tomatoes", "black beans", "chicken broth",
+  "canned soup", "canned tuna", "salsa", "pasta sauce", "mac and cheese",
+  "ramen", "honey", "pickles", "olives", "salad dressing", "hummus",
+  "frozen pizza", "frozen vegetables", "frozen berries", "ice cream",
+  "frozen waffles", "frozen fries", "chips", "tortilla chips", "cookies",
+  "crackers", "pretzels", "popcorn", "granola bars", "chocolate", "almonds",
+  "peanuts",
+  "coffee", "tea", "orange juice", "apple juice", "soda", "sparkling water",
+  "bottled water", "sports drink", "energy drink",
+  "paper towels", "toilet paper", "trash bags", "laundry detergent",
+  "dish soap", "shampoo", "conditioner", "toothpaste", "deodorant", "tissues",
+  "diapers", "baby wipes", "aluminum foil", "sponges", "disinfecting wipes",
+];
+
+const MATCH_SKIP = new Set([
+  "grocery", "organic", "gluten free", "produce", "deli", "bakery", "instant",
+  "canned", "frozen", "dairy", "meat", "seafood", "snack", "drink", "sauce",
+  "dressing", "spice", "seasoning", "oil", "water",
+]);
+
+const MATCH_TERMS = [...new Set([...SHELF_TERMS, ...GROCERY_TERMS])]
+  .filter(t => !MATCH_SKIP.has(t))
+  .sort((a, b) => b.length - a.length);
+
+function termPattern(term) {
+  const t = normalizeName(term);
+  const escaped = t.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  return new RegExp(`(^| )${escaped}(s|es)?( |$)`);
+}
+
+function bestMatchTerm(name) {
+  const low = normalizeName(name);
+  const compact = low.replace(/ /g, "");
+  for (const t of MATCH_TERMS) {
+    const nt = normalizeName(t);
+    if (termPattern(t).test(low)) return t;
+    if (nt.includes(" ") && compact.includes(nt.replace(/ /g, ""))) return t;
+  }
+  return "";
+}
 
 // hard blocklist so TVs, shoes, toys and salon products can't sneak in on a word like "apple" or "water"
 const NON_GROCERY_RE = /\b(watch|smartwatch|airpods?|headphones?|earbuds?|headset|speaker|laptop|tablet|phone|camera|television|gaming|console|controller|lego|toy|toys|plush|doll|dog|cat|pet|boots?|shoes?|sneakers?|sandals?|slippers?|shirt|pants|jacket|coat|dress|socks?|underwear|pajamas?|bedding|mattress|pillow|blanket|furniture|chair|sofa|lamp|rug|carpet|curtain|maker|machine|blender|mixer|fryer|oven|microwave|cookware|vacuum|tool|tire|battery|charger|makeup|mascara|lipstick|perfume|cologne|spray|bouquet|flowers?|floral|wreath|decor|ornament|candle|balloon|gift card|party|costume|jewelry|necklace|bracelet|ring|earring|sunglasses|backpack|purse|wallet|suitcase|luggage|game|games)\b/i;
@@ -99,21 +156,26 @@ function isGroceryName(name) {
 }
 
 function parseUnit(name) {
-  const m = String(name).match(/(\d+(?:\.\d+)?)\s*(fl\.?\s*oz|fluid ounces?|oz|ounces?|lbs?|pounds?|ct|count|sheets?|rolls?|gal|gallons?|qt|quarts?|pt|pints?|kg|ml|g|l)\b/i);
-  if (!m) return { unitQty: null, unitName: null };
-  const qty = parseFloat(m[1]);
+  const raw = String(name);
+  let m = raw.match(/(\d+(?:\.\d+)?)\s*(fl\.?\s*oz|fluid ounces?|oz|ounces?|lbs?|pounds?|ct|count|each|sheets?|rolls?|gal|gallons?|qt|quarts?|pt|pints?|kg|ml|g|l)\b/i);
+  let qty = m ? parseFloat(m[1]) : null;
+  if (!m) {
+    const per = raw.match(/\bper\s+(lb|pound|oz|ounce|gal|gallon|qt|quart|pt|pint|kg|g|ml|l)\b/i);
+    if (per) { qty = 1; m = [null, "1", per[1]]; }
+  }
+  if (!m || !(qty > 0)) return { unitQty: null, unitName: null };
   let u = m[2].toLowerCase().replace(/\./g, "").trim();
   const map = {
     "fl oz": "fl oz", "fluid ounce": "fl oz", "fluid ounces": "fl oz",
     oz: "oz", ounce: "oz", ounces: "oz",
     lb: "lb", lbs: "lb", pound: "lb", pounds: "lb",
-    ct: "ea", count: "ea", sheet: "sheet", sheets: "sheet",
+    ct: "ea", count: "ea", each: "ea", sheet: "sheet", sheets: "sheet",
     roll: "roll", rolls: "roll",
     gal: "gal", gallon: "gal", gallons: "gal",
     qt: "qt", quart: "qt", quarts: "qt", pt: "pt", pint: "pt", pints: "pt",
     kg: "kg", g: "g", ml: "ml", l: "L",
   };
-  if (!map[u] || !(qty > 0)) return { unitQty: null, unitName: null };
+  if (!map[u]) return { unitQty: null, unitName: null };
   return { unitQty: qty, unitName: map[u] };
 }
 
@@ -197,6 +259,8 @@ function makeCatalog({ zip, place, updated, source, pairs }) {
         brand: String(it.brand || "").trim(),
         price: Math.round(price * 100) / 100,
         store: info.id,
+        kind: "ad",
+        term: bestMatchTerm(name),
         validTo,
         category: classify(name),
         unitQty,

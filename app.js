@@ -11,6 +11,7 @@ const state = {
   catalog: null,
   groups: [],
   groupByKey: new Map(),
+  storeItems: new Map(),
   activeCat: "All",
   sort: "cheap",
   limit: 60,
@@ -20,6 +21,7 @@ const state = {
   geo: {},
   geoStatus: "idle",
   listMode: "balance",
+  shelf: null,
 };
 
 const MILE_RATE = 0.67; // gas + wear per mile, used by "best balance"
@@ -34,11 +36,58 @@ const metaEl = $("#meta"), emptyEl = $("#empty"), bannerEl = $("#banner");
 const moreBtn = $("#moreBtn");
 
 const money = (n) => "$" + n.toFixed(2);
+const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 const unitStr = (it) => {
-  if (!it.unitQty || !it.unitName) return "";
-  const u = it.price / it.unitQty;
-  return "$" + u.toFixed(u < 0.1 ? 3 : 2) + "/" + it.unitName;
+  const name = it.unitPriceName || it.unitName;
+  if (!name) return "";
+  const u = it.unitPrice != null ? it.unitPrice : (it.unitQty ? it.price / it.unitQty : null);
+  if (!(u > 0)) return "";
+  return "$" + u.toFixed(u < 0.1 ? 3 : 2) + "/" + name;
 };
+function textHit(text, q) {
+  const low = String(text || "").toLowerCase();
+  const query = String(q || "").toLowerCase().trim();
+  if (!query) return true;
+  if (low.includes(query)) return true;
+  const compact = (s) => s.replace(/[^a-z0-9]/g, "");
+  if (compact(low).includes(compact(query))) return true;
+  const tokens = new Set(low.replace(/[^a-z0-9 ]/g, " ").split(/\s+/).filter(Boolean));
+  return query.split(/\s+/).every((w) =>
+    tokens.has(w) || tokens.has(w.replace(/s$/, "")) || tokens.has(`${w}s`) || tokens.has(w.replace(/es$/, ""))
+  );
+}
+function sourceOf(o) {
+  if (o?.kind === "shelf") return { short: "Shelf", long: "everyday shelf price", cls: "shelf" };
+  return {
+    short: "Ad",
+    long: o?.validTo ? `weekly ad · ends ${shortDate(o.validTo)}` : "weekly ad price",
+    cls: "ad",
+  };
+}
+function cleanName(it) {
+  if (!it) return "";
+  let name = String(it.name || "").trim();
+  const brand = String(it.brand || "").trim();
+  if (brand) {
+    const nb = normalizeName(brand);
+    const nn = normalizeName(name);
+    if (nb && nn.startsWith(nb)) {
+      const rest = name.slice(brand.length).replace(/^[\s,:;-]+/, "").trim();
+      if (rest.length >= 3) name = rest;
+    }
+  }
+  return name;
+}
+function brandOf(it) {
+  const brand = String(it?.brand || "").trim();
+  if (!brand) return "";
+  const nn = normalizeName(it.name || "");
+  return nn.startsWith(normalizeName(brand)) ? "" : brand;
+}
+function sizeStr(it) {
+  if (!it) return "";
+  return it.size || (it.unitQty ? `${it.unitQty} ${it.unitName || ""}`.trim() : "");
+}
 function shortDate(s) {
   if (!s) return "";
   const d = new Date(s + "T12:00:00");
@@ -75,6 +124,78 @@ async function mapLimit(list, n, fn) {
   }
   await Promise.all(Array.from({ length: Math.min(n, list.length) }, worker));
   return out;
+}
+
+// ---------- shelf snapshot ----------
+let shelfCatalog = null;
+let shelfFlight = null;
+
+function readShelfCache(maxAge) {
+  try {
+    const raw = localStorage.getItem("pc-shelf-v1");
+    if (!raw) return null;
+    const obj = JSON.parse(raw);
+    if (!obj?.shelf?.items?.length) return null;
+    if (maxAge > 0 && Date.now() - obj.ts > maxAge) return null;
+    return obj.shelf;
+  } catch { return null; }
+}
+
+function loadShelf(force = false) {
+  if (shelfFlight) return shelfFlight;
+  shelfFlight = (async () => {
+    const cached = readShelfCache(force ? 0 : 6 * 60 * 60 * 1000);
+    if (cached) { shelfCatalog = cached; state.shelf = cached; return cached; }
+    try {
+      const shelf = await getJSON("shelf.json?ts=" + Date.now());
+      if (!shelf?.items?.length) return null;
+      shelfCatalog = shelf;
+      state.shelf = shelf;
+      try {
+        localStorage.setItem("pc-shelf-v1", JSON.stringify({ ts: Date.now(), shelf }));
+      } catch {}
+      return shelf;
+    } catch { return null; }
+  })();
+  return shelfFlight;
+}
+
+function sameArea(a, b) {
+  if (!a || !b) return true;
+  return String(a).slice(0, 3) === String(b).slice(0, 3);
+}
+
+function mergeShelf(cat) {
+  if (!cat) return cat;
+  if (cat.shelfCount != null) return cat;
+  const adItems = (cat.items || []).map((it) => ({
+    ...it,
+    kind: it.kind || "ad",
+    term: it.term || bestMatchTerm(it.name),
+  }));
+  const merged = { ...cat, items: adItems, adCount: adItems.length, shelfCount: 0 };
+  const shelf = shelfCatalog;
+  if (!shelf?.items?.length) return merged;
+
+  merged.shelfZip = shelf.zip;
+  merged.shelfPlace = shelf.place || shelf.zip;
+  merged.shelfUpdated = shelf.updated;
+  if (!sameArea(cat.zip, shelf.zip)) return merged;
+
+  const shelfItems = shelf.items.map((it) => ({
+    ...it,
+    kind: "shelf",
+    term: it.term || bestMatchTerm(it.name),
+    validTo: "",
+  }));
+  const stores = [...(cat.stores || [])];
+  for (const s of shelf.stores || []) {
+    if (!stores.some((x) => x.id === s.id)) stores.push({ ...s });
+  }
+  merged.stores = stores;
+  merged.shelfCount = shelfItems.length;
+  merged.items = [...adItems, ...shelfItems];
+  return merged;
 }
 
 async function fetchCatalog(zip) {
@@ -122,13 +243,15 @@ async function placeForZip(zip) {
   return { label: zip, lat: null, lon: null };
 }
 
-function setCatalog(cat) {
+function setCatalog(raw) {
+  const cat = mergeShelf(raw);
   state.catalog = cat;
   state.zip = cat.zip || state.zip;
   state.place = cat.place || state.place;
   state.limit = 60;
   offStores = new Set([...offStores].filter((id) => cat.stores.some((s) => s.id === id)));
-  for (const key of Object.keys(basket)) if (!cat.items.some((i) => normalizeName(i.name) === key)) delete basket[key];
+  const keys = new Set(cat.items.map(itemGroupKey));
+  for (const key of Object.keys(basket)) if (!keys.has(key)) delete basket[key];
   persist();
   rebuildGroups();
   buildStores();
@@ -137,10 +260,15 @@ function setCatalog(cat) {
   renderBasket();
 }
 
+function itemGroupKey(it) {
+  const size = it.size || (it.unitQty ? `${it.unitQty} ${it.unitName || ""}` : "");
+  return normalizeName(it.name) + (size ? "|" + normalizeName(size) : "");
+}
+
 function rebuildGroups() {
   const map = new Map();
   for (const it of state.catalog?.items || []) {
-    const key = normalizeName(it.name);
+    const key = itemGroupKey(it);
     if (!map.has(key)) map.set(key, []);
     map.get(key).push(it);
   }
@@ -148,12 +276,19 @@ function rebuildGroups() {
   const groups = [...map.entries()].map(([key, offers]) => ({
     key,
     offers,
-    name: offers[0].name,
-    brand: offers[0].brand,
+    name: cleanName(offers[0]),
+    brand: brandOf(offers[0]),
     category: offers[0].category,
+    size: sizeStr(offers[0]),
+    term: offers[0].term || bestMatchTerm(offers[0].name),
   }));
   state.groups = groups;
   state.groupByKey = new Map(groups.map((g) => [g.key, g]));
+  state.storeItems = new Map();
+  for (const it of state.catalog?.items || []) {
+    if (!state.storeItems.has(it.store)) state.storeItems.set(it.store, []);
+    state.storeItems.get(it.store).push(it);
+  }
 }
 
 async function useZip(zip, label, force = false, coords = null) {
@@ -178,8 +313,10 @@ async function useZip(zip, label, force = false, coords = null) {
     cached.place = cached.place || loc.label || zip;
     if (!loc.label || loc.label === zip) loc.label = cached.place;
     renderLocation();
+    await loadShelf();
     setCatalog(cached);
-    setBanner(`Ads for ${cached.place || zip} - updated ${shortDate(cached.updated)}. Tap Refresh for the newest.`, "info");
+    const shelfNote = state.catalog.shelfCount ? ` + ${state.catalog.shelfCount.toLocaleString()} shelf prices` : "";
+    setBanner(`Ads${shelfNote} for ${cached.place || zip} - updated ${shortDate(cached.updated)}. Tap Refresh for the newest.`, "info");
     if (loc.lat == null) ensureCoords().then(() => { if (!$("#listBack").hidden) openList(); });
     return;
   }
@@ -188,6 +325,7 @@ async function useZip(zip, label, force = false, coords = null) {
   render();
   try {
     const cat = await fetchCatalog(zip);
+    await loadShelf();
     let place = label || "";
     if (!place || loc.lat == null) {
       const p = await placeForZip(zip);
@@ -201,7 +339,8 @@ async function useZip(zip, label, force = false, coords = null) {
     state.loading = false;
     setCatalog(cat);
     renderLocation();
-    setBanner(`Live ads for ${cat.place} - updated ${shortDate(cat.updated)}.`, "ok");
+    const shelfNote = state.catalog.shelfCount ? ` + ${state.catalog.shelfCount.toLocaleString()} shelf prices` : "";
+    setBanner(`Live ads${shelfNote} for ${cat.place}.`, "ok");
     if (!$("#listBack").hidden) openList();
   } catch (e) {
     state.loading = false;
@@ -245,23 +384,26 @@ async function ensureCoords() {
 async function loadSnapshot(force = false) {
   const cached = readCache("pc-ads-snapshot", force ? 0 : 30 * 60 * 1000);
   if (cached) {
+    await loadShelf();
     setCatalog(cached);
-    setBanner(`Showing ads for ${cached.place || cached.zip || "Salt Lake City"} - set your ZIP to switch areas.`, "info");
+    const shelfNote = state.catalog.shelfCount ? ` and ${state.catalog.shelfCount.toLocaleString()} everyday shelf prices` : "";
+    setBanner(`Showing ads${shelfNote} for ${cached.place || cached.zip || "Salt Lake City"} - set your ZIP to switch areas.`, "info");
     return;
   }
   state.loading = true;
-  setBanner("Loading this week's ads\u2026", "info");
+  setBanner("Loading this week's ads and shelf prices\u2026", "info");
   render();
   try {
-    const cat = await getJSON("prices.json?ts=" + Date.now());
+    const [cat] = await Promise.all([getJSON("prices.json?ts=" + Date.now()), loadShelf()]);
     if (!cat.items || !cat.items.length) throw new Error("empty");
     localStorage.setItem("pc-ads-snapshot", JSON.stringify({ ts: Date.now(), cat }));
     state.loading = false;
     setCatalog(cat);
-    setBanner(`Showing ads for ${cat.place || cat.zip || "Salt Lake City"} - set your ZIP to switch areas.`, "info");
+    const shelfNote = state.catalog.shelfCount ? ` and ${state.catalog.shelfCount.toLocaleString()} everyday shelf prices` : "";
+    setBanner(`Showing ads${shelfNote} for ${cat.place || cat.zip || "Salt Lake City"} - set your ZIP to switch areas.`, "info");
   } catch {
     state.loading = false;
-    setBanner("Set your ZIP to load this week's grocery ads.", "warn");
+    setBanner("Set your ZIP to load this week's grocery prices.", "warn");
     render();
   }
 }
@@ -329,17 +471,97 @@ function persist() {
   localStorage.setItem("pc-basket", JSON.stringify(basket));
 }
 
+const UNIT_FACTORS = {
+  "fl oz": { kind: "volume", factor: 1 },
+  cup: { kind: "volume", factor: 8 },
+  pt: { kind: "volume", factor: 16 },
+  qt: { kind: "volume", factor: 32 },
+  gal: { kind: "volume", factor: 128 },
+  L: { kind: "volume", factor: 33.814 },
+  ml: { kind: "volume", factor: 0.033814 },
+  oz: { kind: "weight", factor: 1 },
+  lb: { kind: "weight", factor: 16 },
+  g: { kind: "weight", factor: 0.035274 },
+  kg: { kind: "weight", factor: 35.274 },
+  ea: { kind: "ea", factor: 1 },
+  roll: { kind: "roll", factor: 1 },
+  sheet: { kind: "sheet", factor: 1 },
+};
+
+function itemMeasure(it) {
+  const name = it?.unitPriceName || it?.unitName;
+  const info = UNIT_FACTORS[name];
+  if (!info) return null;
+  let perUnit = it.unitPrice;
+  if (!(perUnit > 0) && it.unitQty) perUnit = it.price / it.unitQty;
+  if (!(perUnit > 0)) return null;
+  const qty = it.price / perUnit;
+  if (!(qty > 0)) return null;
+  return {
+    kind: info.kind,
+    perBase: perUnit / info.factor,
+    qty: qty * info.factor,
+    unitName: name,
+    perUnit,
+  };
+}
+
+function nameTokens(name) {
+  const stop = new Set(["the", "and", "with", "for", "pack", "count", "size", "fresh", "frozen", "organic", "large", "white", "red", "whole", "reduced", "fat"]);
+  return normalizeName(name).split(" ").map((w) => {
+    if (w.endsWith("ies")) return w.slice(0, -3) + "y";
+    if (w.endsWith("es") && w.length > 4) return w.slice(0, -2);
+    if (w.endsWith("s") && w.length > 3) return w.slice(0, -1);
+    return w;
+  }).filter((w) => w.length > 2 && !stop.has(w));
+}
+
+function bestSubstitute(g, lineMeasure, storeId) {
+  const term = g.term || bestMatchTerm(g.name);
+  if (!term) return null;
+  const lineOrganic = /organic/i.test(g.name);
+  const lineTokens = new Set(nameTokens(g.name));
+  let best = null, bestScore = Infinity;
+  for (const it of state.storeItems.get(storeId) || []) {
+    if ((it.term || bestMatchTerm(it.name)) !== term) continue;
+    if (/organic/i.test(it.name) !== lineOrganic) continue;
+    const m = itemMeasure(it);
+    if (lineMeasure && (!m || m.kind !== lineMeasure.kind)) continue;
+    let ratio = 1;
+    if (lineMeasure && m) {
+      ratio = m.qty / lineMeasure.qty;
+      if (!(ratio >= 0.78 && ratio <= 1.35)) continue;
+    }
+    const shared = nameTokens(it.name).filter((t) => lineTokens.has(t)).length;
+    if (!shared) continue;
+    const score = Math.abs(Math.log(ratio)) * 4 - Math.min(shared, 3) * 0.15 + it.price * 0.001;
+    if (score < bestScore) { bestScore = score; best = it; }
+  }
+  return best;
+}
+
 function basketTotals() {
-  const rows = activeStoreList().map((s) => ({ store: s, sum: 0, have: 0, missing: 0 }));
+  const rows = activeStoreList().map((s) => ({
+    store: s, sum: 0, have: 0, missing: 0, similar: 0, lines: [],
+  }));
   for (const [key, qty] of Object.entries(basket)) {
     const g = state.groupByKey.get(key);
-    if (!g) continue;
+    if (!g?.offers?.length) continue;
+    const lineMeasure = itemMeasure(g.offers[0]);
     for (const r of rows) {
-      const offers = g.offers.filter((o) => o.store === r.store.id);
-      if (offers.length) {
-        r.sum += Math.min(...offers.map((o) => o.price)) * qty;
-        r.have += qty;
-      } else r.missing += qty;
+      const exact = g.offers.filter((o) => o.store === r.store.id);
+      let pick = null, similar = false;
+      if (exact.length) {
+        pick = exact.reduce((a, b) => (a.price <= b.price ? a : b));
+      } else {
+        pick = bestSubstitute(g, lineMeasure, r.store.id);
+        similar = !!pick;
+      }
+      if (!pick) { r.missing += qty; continue; }
+      r.sum += pick.price * qty;
+      r.have += qty;
+      if (similar) r.similar += qty;
+      r.lines.push({ key, qty, item: pick, similar });
     }
   }
   return rows;
@@ -357,9 +579,10 @@ function renderBasket() {
   const top = complete[0] || any[0];
   $("#basketTitle").textContent = `${count} item${count > 1 ? "s" : ""} in your list`;
   if (top) {
+    const similar = top.similar ? ` · ${top.similar} similar item${top.similar > 1 ? "s" : ""}` : "";
     $("#basketSub").textContent = complete[0]
-      ? `Cheapest full trip: ${money(top.sum)} at ${top.store.name}`
-      : `Best so far: ${money(top.sum)} at ${top.store.name} · ${top.have} of ${top.have + top.missing} items`;
+      ? `Lowest full trip: ${money(top.sum)} at ${top.store.name}${similar}`
+      : `Best so far: ${money(top.sum)} at ${top.store.name} · ${top.have} of ${top.have + top.missing} items${similar}`;
   } else {
     $("#basketSub").textContent = "Add a few prices to compare the trip";
   }
@@ -606,6 +829,7 @@ function renderReco() {
     best.missing
       ? (balanceCost ? `${best.have} of ${covered} items · ${best.missing} missing` : `${best.missing} missing`)
       : `all ${best.have} items covered`,
+    best.similar ? `${best.similar} similar` : "",
     driveUnknown ? "distance unavailable" : "",
   ].filter(Boolean).join(" · ");
 
@@ -619,7 +843,7 @@ function renderReco() {
   } else if (!hasGeo) {
     geoNote = `<div class="geo-note">No nearby branches found for these stores. Ranking by price for now.<br><button class="btn small" id="geoBtn">Try again</button></div>`;
   } else {
-    geoNote = `<div class="muted" style="margin-top:8px">Drive estimates use the nearest branch (OpenStreetMap). Best mix values the drive at ${money(MILE_RATE)} per mile.</div>`;
+    geoNote = `<div class="muted" style="margin-top:8px">Drive estimates use the nearest branch (OpenStreetMap). Best mix values the drive at ${money(MILE_RATE)} per mile. Totals use the exact item when a store has it, otherwise the closest size, marked similar.</div>`;
   }
 
   box.innerHTML = modeHTML + `
@@ -637,7 +861,7 @@ function renderReco() {
         <div class="rank ${i === 0 ? "win" : ""}">
           <div class="rank-name"><span class="dot" style="background:${r.store.color}"></span>${r.store.name}${r.missing ? ` <span class="muted">missing ${r.missing}</span>` : ""}</div>
           <div class="rank-sum">${money(r.sum)}${mode === "balance" && r.geo ? `<small>${money(eff(r))} with drive</small>` : ""}</div>
-          <div class="rank-sub">${r.geo ? distText(r.geo) : (geoOn ? "distance unknown" : "")}</div>
+          <div class="rank-sub">${r.geo ? distText(r.geo) : (geoOn ? "distance unknown" : "")}${r.similar ? ` · ${r.similar} similar` : ""}</div>
         </div>`).join("")}
     </div>
     ${complete.length ? "" : `<div class="muted" style="margin-top:8px">No single store covers the whole list. Stores are ranked by how many items they cover, then price.</div>`}`;
@@ -657,16 +881,18 @@ function visibleGroups() {
     const active = groupOffers(g);
     if (!active.length) return false;
     if (!q) return true;
-    const hay = (g.name + " " + g.brand + " " + g.category + " " + active.map((o) => storeObj(o.store).name).join(" ")).toLowerCase();
-    return hay.includes(q);
+    const hay = [
+      g.name, g.brand, g.category, g.size, g.term,
+      active.map((o) => storeObj(o.store).name).join(" "),
+    ].join(" ");
+    return textHit(hay, q) || textHit(g.term, q);
   });
   if (state.sort === "az") list.sort((a, b) => a.name.localeCompare(b.name));
   else if (state.sort === "unit") {
     const u = (g) => {
       return groupOffers(g).reduce((m, o) => {
-        if (!o.unitQty) return m;
-        const v = o.price / o.unitQty;
-        return v < m ? v : m;
+        const v = o.unitPrice != null ? o.unitPrice : (o.unitQty ? o.price / o.unitQty : null);
+        return v != null && v < m ? v : m;
       }, Infinity);
     };
     list.sort((a, b) => u(a) - u(b));
@@ -674,6 +900,95 @@ function visibleGroups() {
   return list;
 }
 
+function compareData(q) {
+  const matches = (state.catalog?.items || []).filter((it) =>
+    !offStores.has(it.store) &&
+    (state.activeCat === "All" || it.category === state.activeCat) &&
+    (textHit(it.name, q) || textHit(it.brand || "", q) || textHit(it.term || "", q))
+  );
+  const measured = matches.map((it) => ({ it, m: itemMeasure(it) })).filter((x) => x.m);
+  if (!measured.length) return null;
+
+  const kinds = new Map();
+  for (const x of measured) {
+    if (!kinds.has(x.m.kind)) kinds.set(x.m.kind, { stores: new Set(), count: 0 });
+    const k = kinds.get(x.m.kind);
+    k.stores.add(x.it.store);
+    k.count++;
+  }
+  const kind = [...kinds.entries()]
+    .sort((a, b) => b[1].stores.size - a[1].stores.size || b[1].count - a[1].count)[0][0];
+
+  const byStore = new Map();
+  for (const x of measured) {
+    if (x.m.kind !== kind) continue;
+    const prev = byStore.get(x.it.store);
+    if (!prev || x.m.perBase < prev.m.perBase || (x.m.perBase === prev.m.perBase && x.it.price < prev.it.price)) {
+      byStore.set(x.it.store, x);
+    }
+  }
+  const rows = [...byStore.values()].sort((a, b) =>
+    a.m.perBase - b.m.perBase || a.it.price - b.it.price
+  );
+  return { rows, kind };
+}
+
+function renderCompare() {
+  const el = $("#compare");
+  if (!el) return;
+  const q = searchEl.value.trim();
+  if (q.length < 2 || !state.catalog) {
+    el.hidden = true;
+    el.innerHTML = "";
+    return;
+  }
+  const data = compareData(q);
+  if (!data?.rows.length) {
+    el.hidden = true;
+    el.innerHTML = "";
+    return;
+  }
+  const rows = data.rows;
+  const best = rows[0];
+  const src = sourceOf(best.it);
+  const shelfNote = state.catalog.shelfCount
+    ? `Shelf prices updated ${shortDate(state.catalog.shelfUpdated)}.`
+    : state.catalog.shelfZip
+      ? `Shelf prices are only snapshotted for ${state.catalog.shelfZip} right now.`
+      : "Weekly ad prices only for this area right now.";
+  const unitText = (x) => `$${x.m.perUnit.toFixed(x.m.perUnit < 0.1 ? 3 : 2)}/${x.m.unitName}`;
+
+  el.innerHTML = `
+    <div class="compare-head">
+      <div>
+        <div class="compare-title">Cheapest ${esc(q)}</div>
+        <div class="compare-sub">Lowest unit price at each store · sizes normalized</div>
+      </div>
+      <div class="compare-count">${rows.length} store${rows.length > 1 ? "s" : ""}</div>
+    </div>
+    <div class="compare-best">
+      <div class="cb-left">
+        <div class="cb-store"><span class="dot" style="background:${storeObj(best.it.store).color}"></span>${esc(storeObj(best.it.store).name)} <span class="src-tag ${src.cls}">${src.short}</span></div>
+        <div class="cb-name">${esc(best.it.name)}</div>
+        <div class="cb-meta">${[best.it.size, unitText(best)].filter(Boolean).map(esc).join(" · ")}</div>
+      </div>
+      <div class="cb-price">${money(best.it.price)}</div>
+    </div>
+    ${rows.length > 1 ? `<div class="compare-rows">
+      ${rows.slice(1).map((x) => {
+        const osrc = sourceOf(x.it);
+        return `<div class="crow">
+          <div class="crow-main">
+            <span class="crow-store"><span class="dot" style="background:${storeObj(x.it.store).color}"></span>${esc(storeObj(x.it.store).name)} <span class="src-tag ${osrc.cls}">${osrc.short}</span></span>
+            <span class="crow-name">${esc(x.it.name)}</span>
+          </div>
+          <div class="crow-price">${money(x.it.price)}<small>${esc(unitText(x))}</small></div>
+        </div>`;
+      }).join("")}
+    </div>` : ""}
+    <div class="compare-note">${shelfNote} Ad prices are this week's sales; shelf prices are everyday in-store prices. ${rows.length > 1 ? "Sizes vary, so each store is compared on unit price." : "Only one store has a comparable price."}</div>`;
+  el.hidden = false;
+}
 function offerRows(g, max) {
   const offers = groupOffers(g);
   const seenStores = new Set();
@@ -695,30 +1010,34 @@ function cardHTML(g) {
   const others = offers.slice(1);
   const next = others[0];
   const up = unitStr(best);
+  const src = sourceOf(best);
   const inList = basket[g.key] > 0;
-  const expiry = best.validTo ? `ad ends ${shortDate(best.validTo)}` : "weekly ad price";
+  const sub = [best.brand, g.size, best.was ? `was ${money(best.was)}` : "", src.long].filter(Boolean).join(" · ");
   return `
   <div class="card" data-key="${g.key}">
     <div class="card-top">
       <div class="pic">${CAT_ICON[best.category] || "🛒"}</div>
       <div class="t">
-        <h3>${best.name}</h3>
-        <div class="sub">${best.brand ? best.brand + " · " : ""}${expiry}</div>
+        <h3>${esc(best.name)}</h3>
+        <div class="sub">${esc(sub)}</div>
       </div>
     </div>
     <div class="win-box">
       <div>
-        <div class="win-store"><span class="dot" style="background:${s.color}"></span>${s.name}</div>
-        <div class="unit">${up || "advertised price"}</div>
+        <div class="win-store"><span class="dot" style="background:${s.color}"></span>${esc(s.name)} <span class="src-tag ${src.cls}">${src.short}</span></div>
+        <div class="unit">${up || src.long}</div>
       </div>
       <div class="win-price">${money(best.price)}</div>
     </div>
     <div class="other">
-      ${others.map((o) => `<div class="orow"><span><span class="dot" style="background:${storeObj(o.store).color}"></span>${storeObj(o.store).name}</span><span>${money(o.price)}</span></div>`).join("") ||
-        `<div class="orow muted">Only store advertising this item this week</div>`}
+      ${others.map((o) => {
+        const osrc = sourceOf(o);
+        return `<div class="orow"><span><span class="dot" style="background:${storeObj(o.store).color}"></span>${esc(storeObj(o.store).name)} <span class="src-tag ${osrc.cls}">${osrc.short}</span></span><span>${money(o.price)}</span></div>`;
+      }).join("") ||
+        `<div class="orow muted">Only one store has this size</div>`}
     </div>
     <div class="card-foot">
-      <span class="save">${next ? `Save ${money(next.price - best.price)} vs next` : "In this week's ad"}</span>
+      <span class="save">${next ? `Save ${money(next.price - best.price)} vs next` : (src.cls === "shelf" ? "Everyday shelf price" : "In this week's ad")}</span>
       <button class="add ${inList ? "in" : ""}">${inList ? `✓ In list (${basket[g.key]})` : "+ Add"}</button>
     </div>
   </div>`;
@@ -728,10 +1047,12 @@ function render() {
   const groups = visibleGroups();
   const active = activeStoreList();
   const counts = catCounts();
+  const adCount = state.catalog?.adCount ?? (state.catalog?.items || []).filter((i) => i.kind !== "shelf").length;
+  const shelfCount = state.catalog?.shelfCount || 0;
 
   $("#statLine").textContent = state.catalog
-    ? `${state.catalog.items.length.toLocaleString()} advertised prices · ${state.catalog.stores.length} stores`
-    : "Live weekly grocery ads";
+    ? `${adCount.toLocaleString()} ad prices${shelfCount ? ` + ${shelfCount.toLocaleString()} shelf prices` : ""} · ${state.catalog.stores.length} stores`
+    : "Weekly ads + everyday shelf prices";
 
   catsEl.querySelectorAll(".cat").forEach((b) => {
     b.classList.toggle("on", b.dataset.cat === state.activeCat);
@@ -746,15 +1067,17 @@ function render() {
   } else {
     grid.innerHTML = shown.map(cardHTML).join("");
   }
+  renderCompare();
 
   if (state.loading && state.catalog) {
-    metaEl.textContent = "Refreshing this week's ads\u2026";
+    metaEl.textContent = "Refreshing prices\u2026";
   } else if (state.catalog) {
     const maxValid = state.catalog.items.reduce((m, i) => (i.validTo > m ? i.validTo : m), "");
     const sortLabel = state.sort === "unit" ? "best unit price" : state.sort === "az" ? "A to Z" : "cheapest first";
     metaEl.textContent =
       `${groups.length.toLocaleString()} products · ${active.length} of ${state.catalog.stores.length} stores` +
       (maxValid ? ` · ads through ${shortDate(maxValid)}` : "") +
+      (shelfCount ? ` · shelf ${shortDate(state.catalog.shelfUpdated)}` : "") +
       ` · ${sortLabel}`;
   } else {
     metaEl.textContent = "";
@@ -765,10 +1088,10 @@ function render() {
 
   if (state.catalog && !groups.length) {
     emptyEl.hidden = false;
-    emptyEl.querySelector(".empty-big").textContent = "No advertised prices match";
+    emptyEl.querySelector(".empty-big").textContent = "No prices match";
     emptyEl.querySelector("p").textContent = state.catalog.items.length
-      ? "Weekly ads only list sale items. Try a broader word, another category, or turn more stores on."
-      : "Set your ZIP to pull this week's ads.";
+      ? "Try a broader word, another category, or turn more stores on."
+      : "Set your ZIP to load grocery prices.";
   }
 }
 
