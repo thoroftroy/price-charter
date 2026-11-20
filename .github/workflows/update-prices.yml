@@ -1,35 +1,38 @@
 name: update-prices
+
 on:
   schedule:
-    - cron: "0 13 * * *" # daily
+    - cron: "0 13 * * *" # daily snapshot
   workflow_dispatch:
     inputs:
       zip:
-        description: "ZIP code"
+        description: "ZIP code to snapshot"
         required: false
         default: ""
+
 permissions:
   contents: write
+
 jobs:
-  fetch:
+  snapshot:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-      - run: node tools/fetch-kroger.mjs
+      - name: Pull this week's grocery ads
+        run: node tools/fetch-flipp.mjs
         env:
-          KROGER_CLIENT_ID: ${{ secrets.KROGER_CLIENT_ID }}
-          KROGER_CLIENT_SECRET: ${{ secrets.KROGER_CLIENT_SECRET }}
           PRICE_ZIP: ${{ inputs.zip || vars.PRICE_ZIP || '84101' }}
-      - run: |
+      - name: Commit snapshot if it changed
+        run: |
           if git diff --quiet -- prices.json; then
             echo "no change"
           else
             git config user.name "price-bot"
             git config user.email "price-bot@users.noreply.github.com"
             git add prices.json
-            git commit -m "Update live prices"
+            git commit -m "Update weekly ad snapshot"
             git push
           fi

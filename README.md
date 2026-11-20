@@ -2,23 +2,38 @@
 
 Live: https://thoroftroy.github.io/price-charter/
 
-Look up a grocery, see which store is cheapest.
+Look up a grocery, see which store has it cheapest this week.
 
-Smith's, Walmart, Costco, Target, Aldi, Trader Joe's, Whole Foods, Kroger.
+Prices come from real weekly store ads (Smith's, Walmart, Costco, Target, Aldi, Kroger, Sprouts, Reams, Lucky, Albertsons, Macey's, Dan's, Sam's Club and more) through Flipp's public flyer feed. No API keys, no manual entry.
 
-Type "milk", pick your stores, tap + Add to build a list and see the cheapest trip total.
-Hit "Use my location" (or type a ZIP) to see which of these stores are close to you.
+## What it does
 
-Prices start as samples. Add your own from receipts - they save in your browser.
+- Search any grocery - milk, eggs, chicken, paper towels.
+- Cheapest store is shown first, with unit price ($/oz, $/lb) when the ad lists a size.
+- Set your location (GPS or ZIP) and it pulls the ads for your area.
+- Build a list. The app totals the trip at every store and recommends one based on:
+  - **Cheapest** - lowest grocery total
+  - **Closest** - least driving
+  - **Best mix** - groceries + $0.67/mile (gas and wear)
+- If no single store covers the whole list, stores are ranked by how many items they cover first, then by the selected mode. Missing items are shown, not guessed.
+- Drive distance and time use the nearest branch (OpenStreetMap + OSRM).
 
-## Live Smith's / Kroger prices
+## Notes
 
-Walmart, Costco, Target and the rest don't offer a free price feed, so those
-stay manual. Smith's and Kroger do, through the official Kroger API:
+- Ads are sale prices, not shelf prices. Some stores don't publish weekly ads in every area, so the store list changes by ZIP.
+- Everything runs in the browser. Location never leaves your device.
+- `prices.json` is a snapshot for the default ZIP (84101) so the page has data before you set a location. A GitHub Action refreshes it daily.
+- To change the snapshot area: repo Settings -> Variables -> `PRICE_ZIP`, or run the workflow manually with a ZIP.
 
-1. Get a free key at https://developer.kroger.com (new app, turn on Product Location Data).
-2. Repo Settings -> Secrets: add `KROGER_CLIENT_ID` and `KROGER_CLIENT_SECRET`.
-3. Repo Settings -> Variables: add `PRICE_ZIP` with your ZIP.
-4. Actions -> update-prices -> Run workflow. It refreshes daily after that.
+## Run locally
 
-The fetched prices land in `prices.json` and the site labels them with the date.
+```bash
+python3 -m http.server 8000
+# open http://localhost:8000
+```
+
+Refresh the snapshot:
+
+```bash
+node tools/fetch-flipp.mjs 84101
+```
