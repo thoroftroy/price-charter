@@ -415,7 +415,7 @@ const STORE_SHOP_TYPES = new Set([
 ]);
 
 async function photonSearch(query, lat, lon) {
-  const latD = 0.24, lonD = 0.31;
+  const latD = 0.4, lonD = 0.5;
   const bbox = [lon - lonD, lat - latD, lon + lonD, lat + latD]
     .map((n) => n.toFixed(4)).join(",");
   const params = new URLSearchParams({
@@ -444,7 +444,7 @@ async function findNearbyStores(lat, lon, ids) {
       if (storeInfo(p.name).id !== id) continue;
       if (CHAIN_PREFIX[id] && !CHAIN_PREFIX[id].test(p.name)) continue;
       const d = haversineMiles(lat, lon, la, lo);
-      if (d > 15) continue;
+      if (d > 25) continue;
       if (!best || d < best.haversine) {
         best = {
           lat: la, lon: lo, haversine: d,
@@ -751,10 +751,11 @@ function render() {
     metaEl.textContent = "Refreshing this week's ads\u2026";
   } else if (state.catalog) {
     const maxValid = state.catalog.items.reduce((m, i) => (i.validTo > m ? i.validTo : m), "");
+    const sortLabel = state.sort === "unit" ? "best unit price" : state.sort === "az" ? "A to Z" : "cheapest first";
     metaEl.textContent =
       `${groups.length.toLocaleString()} products · ${active.length} of ${state.catalog.stores.length} stores` +
       (maxValid ? ` · ads through ${shortDate(maxValid)}` : "") +
-      " · cheapest first";
+      ` · ${sortLabel}`;
   } else {
     metaEl.textContent = "";
   }
