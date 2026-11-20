@@ -33,6 +33,15 @@
   <div class="label">Stores - tap to turn on/off</div>
   <div class="stores" id="stores"></div>
 
+  <div class="loc-row">
+    <span id="locLabel" class="loc-label">📍 Location not set</span>
+    <button class="loc-btn" id="locBtn">Use my location</button>
+    <input id="zipInput" class="zip" inputmode="numeric" placeholder="ZIP" maxlength="10" />
+    <button class="loc-btn" id="zipBtn">Set</button>
+    <button class="loc-btn" id="locClear" hidden>Clear</button>
+  </div>
+  <div class="nearby" id="nearby" hidden></div>
+
   <div class="filter-row">
     <div class="cats" id="cats"></div>
     <select id="sort" aria-label="Sort">
@@ -50,7 +59,7 @@
     <div class="empty-big">Nothing found</div>
     <p>Try "milk" or "bread". Or add it with the button up top.</p>
   </div>
-  <p class="note">Prices are samples from Nov 2026 to show how it works. Add your own from receipts and they save on this device.</p>
+  <p class="note" id="dataNote">Prices are samples from Nov 2026 to show how it works. Add your own from receipts and they save on this device.</p>
 </main>
 
 <div class="basket-bar" id="basketBar" hidden>

@@ -13,6 +13,8 @@ let offStores = new Set(JSON.parse(localStorage.getItem("pc-off") || "[]"));
 let activeCat = "All";
 let products = loadPrices();
 let basket = JSON.parse(localStorage.getItem("pc-basket") || "{}"); // id -> qty
+let loc = JSON.parse(localStorage.getItem("pc-loc") || "null");
+let liveInfo = null;
 
 function loadPrices() {
   try {
@@ -147,6 +149,149 @@ function render() {
   });
 }
 
+// --- location + nearby stores ---
+const CHAINS = [
+  { id: "smiths", match: ["smith"] },
+  { id: "walmart", match: ["walmart"] },
+  {id: "costco", match: ["costco"] },
+  { id: "target", match: ["target"] },
+  { id: "aldi", match: ["aldi"] },
+  { id: "traderjoes", match: ["trader joe"] },
+  { id: "wholefoods", match: ["whole foods"] },
+  { id: "kroger", match: ["kroger", "fred meyer", "king sooper", "ralph", "dillons", "fry", "qfc", "marianos", "pick n save", "copps", "metro market"] },
+];
+
+function miles(a, b, c, d) {
+  const R = 3958.8, t = Math.PI / 180;
+  const h = Math.sin((c - a) * t / 2) ** 2 + Math.cos(a * t) * Math.cos(c * t) * Math.sin((d - b) * t / 2) ** 2;
+  return 2 * R * Math.asin(Math.sqrt(h));
+}
+
+function renderLoc() {
+  const label = $("#locLabel");
+  if (loc) {
+    label.textContent = `📍 ${loc.label}`;
+    $("#locClear").hidden = false;
+    renderNearby();
+  } else {
+    label.textContent = "📍 Location not set";
+    $("#locClear").hidden = true;
+    $("#nearby").hidden = true;
+  }
+}
+
+$("#locBtn").onclick = () => {
+  if (!navigator.geolocation) {
+    $("#locLabel").textContent = "📍 No GPS here - type your ZIP";
+    return;
+  }
+  $("#locLabel").textContent = "📍 Locating…";
+  navigator.geolocation.getCurrentPosition(async (pos) => {
+    const lat = pos.coords.latitude, lon = pos.coords.longitude;
+    let label = `${lat.toFixed(2)}, ${lon.toFixed(2)}`, zip = "";
+    try {
+      const r = await fetch(`https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${lat}&longitude=${lon}&localityLanguage=en`);
+      const j = await r.json();
+      label = `${j.city || j.locality || ""} ${j.postcode || ""}`.trim() || label;
+      zip = j.postcode || "";
+    } catch {}
+    loc = { lat, lon, label, zip, src: "gps" };
+    localStorage.setItem("pc-loc", JSON.stringify(loc));
+    renderLoc();
+  }, () => {
+    $("#locLabel").textContent = "📍 Blocked - type your ZIP instead";
+  });
+};
+
+$("#zipBtn").onclick = async () => {
+  const zip = $("#zipInput").value.trim();
+  if (!zip) return;
+  $("#locLabel").textContent = "📍 Looking up ZIP…";
+  try {
+    const r = await fetch(`https://api.zippopotam.us/us/${zip}`);
+    if (!r.ok) throw 0;
+    const j = await r.json();
+    const p = j.places[0];
+    loc = { lat: parseFloat(p.latitude), lon: parseFloat(p.longitude), label: `${p["place name"]} ${zip}`, zip, src: "zip" };
+    localStorage.setItem("pc-loc", JSON.stringify(loc));
+    renderLoc();
+  } catch {
+    $("#locLabel").textContent = "📍 ZIP not found - try another";
+  }
+};
+
+$("#locClear").onclick = () => {
+  loc = null;
+  localStorage.removeItem("pc-loc");
+  renderLoc();
+};
+
+async function renderNearby() {
+  const box = $("#nearby");
+  if (!loc) { box.hidden = true; return; }
+  box.hidden = false;
+  box.innerHTML = `<span class="muted">Finding stores near you…</span>`;
+  try {
+    const q = `[out:json][timeout:25];(node["shop"="supermarket"](around:12000,${loc.lat},${loc.lon});way["shop"="supermarket"](around:12000,${loc.lat},${loc.lon}););out center 30;`;
+    const r = await fetch("https://overpass-api.de/api/interpreter", {
+      method: "POST", body: "data=" + encodeURIComponent(q)
+    });
+    const j = await r.json();
+    const found = [];
+    for (const e of j.elements || []) {
+      const name = (e.tags && e.tags.name) || "";
+      const lat = e.lat ?? (e.center && e.center.lat);
+      const lon = e.lon ?? (e.center && e.center.lon);
+      if (!name || lat == null || lon == null) continue;
+      const low = name.toLowerCase();
+      const chain = CHAINS.find(c => c.match.some(m => low.includes(m)));
+      if (!chain) continue;
+      found.push({ chain: chain.id, d: miles(loc.lat, loc.lon, lat, lon) });
+    }
+    found.sort((a, b) => a.d - b.d);
+    const seen = new Map();
+    for (const f of found) if (!seen.has(f.chain)) seen.set(f.chain, f);
+    const list = [...seen.values()].slice(0, 6);
+    if (!list.length) {
+      box.innerHTML = `<span class="muted">No tracked stores within about 8 miles.</span>`;
+      return;
+    }
+    box.innerHTML = `<span class="muted">Close to you:</span> ` + list.map(f =>
+      `<button class="near" data-s="${f.chain}">${storeName(f.chain)} · ${f.d.toFixed(1)} mi</button>`).join("");
+    box.querySelectorAll(".near").forEach(b => b.onclick = () => {
+      const sid = b.dataset.s;
+      offStores.has(sid) ? offStores.delete(sid) : offStores.add(sid);
+      persist(); buildStores(); render();
+    });
+  } catch {
+    box.innerHTML = `<span class="muted">Could not load nearby stores. Check connection.</span>`;
+  }
+}
+
+// --- live prices (prices.json, written daily by GitHub Action) ---
+async function refreshLive() {
+  try {
+    const r = await fetch("prices.json?ts=" + Date.now(), { cache: "no-store" });
+    if (!r.ok) return;
+    const j = await r.json();
+    if (!j || !j.prices) return;
+    let n = 0;
+    for (const [pid, m] of Object.entries(j.prices)) {
+      const p = products.find(x => x.id === pid);
+      if (!p) continue;
+      for (const [sid, v] of Object.entries(m)) {
+        if (typeof v === "number" && v > 0) { p.prices[sid] = v; n++; }
+      }
+    }
+    if (n) {
+      liveInfo = { updated: j.updated, place: j.place };
+      render();
+      $("#dataNote").textContent =
+        `Smith's prices live as of ${j.updated}${j.place ? " near " + j.place : ""}. The rest are samples - add your own from receipts.`;
+    }
+  } catch {}
+}
+
 // --- detail sheet ---
 function openDetail(id) {
   const p = products.find(x => x.id === id);
@@ -275,7 +420,7 @@ $("#addForm").addEventListener("submit", e => {
 });
 $("#resetData").onclick = () => {
   localStorage.removeItem("pc-prices");
-  products = loadPrices(); persist(); render();
+  products = loadPrices(); persist(); render(); refreshLive();
 };
 
-buildStores(); buildCats(); render(); renderBasket();
+buildStores(); buildCats(); renderLoc(); render(); renderBasket(); refreshLive();
