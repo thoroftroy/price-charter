@@ -20,11 +20,6 @@
    "color": "#0067a0"
   },
   {
-   "id": "dollargeneral",
-   "name": "Dollar General",
-   "color": "#ca8a04"
-  },
-  {
    "id": "lucky",
    "name": "Lucky",
    "color": "#dc2626"
@@ -35,14 +30,14 @@
    "color": "#7c3aed"
   },
   {
-   "id": "familydollar",
-   "name": "Family Dollar",
-   "color": "#dc2626"
-  },
-  {
    "id": "smiths",
    "name": "Smith's",
    "color": "#0b5ed7"
+  },
+  {
+   "id": "dollargeneral",
+   "name": "Dollar General",
+   "color": "#ca8a04"
   },
   {
    "id": "walmart",
@@ -53,6 +48,11 @@
    "id": "maceys",
    "name": "Macey's",
    "color": "#b91c1c"
+  },
+  {
+   "id": "familydollar",
+   "name": "Family Dollar",
+   "color": "#dc2626"
   },
   {
    "id": "freshmarket",
@@ -3210,17 +3210,17 @@
    "unitName": null
   },
   {
-   "id": "pk1745",
-   "name": "Arm & Hammer™ Liquid Laundry Detergent 35-67 Load/45.5-67 oz.",
-   "brand": "Arm & Hammer",
+   "id": "1wofmcv",
+   "name": "Arm & Hammer™ Liquid Laundry Detergent 5-47 Load(84.5-684.5 mL)",
+   "brand": "",
    "price": 3,
    "store": "dollargeneral",
    "kind": "ad",
    "term": "laundry detergent",
    "validTo": "2026-11-28",
    "category": "Household",
-   "unitQty": 67,
-   "unitName": "oz"
+   "unitQty": 684.5,
+   "unitName": "ml"
   },
   {
    "id": "ptqhsk",
@@ -3236,9 +3236,9 @@
    "unitName": "oz"
   },
   {
-   "id": "1dxhpjz",
-   "name": "BIC® Flex™ or Select® Razor Gift Sets",
-   "brand": "",
+   "id": "1oyg6px",
+   "name": "BIC® Flex or Soleil® Razor Gift Sets",
+   "brand": "Bic",
    "price": 3,
    "store": "dollargeneral",
    "kind": "ad",
@@ -3249,13 +3249,13 @@
    "unitName": null
   },
   {
-   "id": "woxylm",
-   "name": "Brawny® 3-Ply Paper Towel",
+   "id": "144ipkf",
+   "name": "Brawny 3-Ply Paper Towels",
    "brand": "Brawny",
    "price": 8,
    "store": "dollargeneral",
    "kind": "ad",
-   "term": "paper towel",
+   "term": "paper towels",
    "validTo": "2026-11-28",
    "category": "Household",
    "unitQty": null,
@@ -3275,21 +3275,21 @@
    "unitName": null
   },
   {
-   "id": "a6get8",
-   "name": "Campbell's® Cream of Mushroom or Cream of Chicken",
-   "brand": "",
+   "id": "121c0rb",
+   "name": "Campbell's® Cream of Mushroom or Cream of Chicken 10.5 oz.",
+   "brand": "Campbell's",
    "price": 1,
    "store": "dollargeneral",
    "kind": "ad",
    "term": "mushroom",
    "validTo": "2026-11-28",
    "category": "Meat & Seafood",
-   "unitQty": null,
-   "unitName": null
+   "unitQty": 10.5,
+   "unitName": "oz"
   },
   {
-   "id": "1gipa38",
-   "name": "Campbell's® Soup Kitchen Classics® 14.3 oz.",
+   "id": "1cojcp6",
+   "name": "Campbell's® Soup Kitchen Classics™ 14.5 oz.",
    "brand": "",
    "price": 1.25,
    "store": "dollargeneral",
@@ -3297,7 +3297,7 @@
    "term": "soup",
    "validTo": "2026-11-28",
    "category": "Pantry",
-   "unitQty": 14.3,
+   "unitQty": 14.5,
    "unitName": "oz"
   },
   {
@@ -3340,8 +3340,34 @@
    "unitName": null
   },
   {
-   "id": "1xohqhc",
-   "name": "Clover Valley® Cheese Sliced, Block or Shredded",
+   "id": "fu1hmv",
+   "name": "CLOVER VALLEY CHICKEN BROTH, CHICKEN AND RICE CONDENSED SOUP",
+   "brand": "Clover Valley",
+   "price": 1,
+   "store": "dollargeneral",
+   "kind": "ad",
+   "term": "chicken broth",
+   "validTo": "2026-11-28",
+   "category": "Pantry",
+   "unitQty": null,
+   "unitName": null
+  },
+  {
+   "id": "5q9pbv",
+   "name": "Clover Valley Lactose Free Milk 64 oz.",
+   "brand": "",
+   "price": 3.95,
+   "store": "dollargeneral",
+   "kind": "ad",
+   "term": "milk",
+   "validTo": "2026-11-28",
+   "category": "Dairy & Eggs",
+   "unitQty": 64,
+   "unitName": "oz"
+  },
+  {
+   "id": "12or8wy",
+   "name": "Clover Valley® Cheese Sliced, Block or Shredded 6-8 oz.",
    "brand": "",
    "price": 2.5,
    "store": "dollargeneral",
@@ -3349,8 +3375,8 @@
    "term": "cheese",
    "validTo": "2026-11-28",
    "category": "Dairy & Eggs",
-   "unitQty": null,
-   "unitName": null
+   "unitQty": 8,
+   "unitName": "oz"
   },
   {
    "id": "2sz16o",
@@ -3366,21 +3392,21 @@
    "unitName": "lb"
   },
   {
-   "id": "j0tdpo",
-   "name": "Clover Valley® Mixed Nuts 14.75 oz.",
-   "brand": "Clover Valley",
-   "price": 6,
+   "id": "1nbq0tn",
+   "name": "Clover Valley® Single Serve Coffee Pads",
+   "brand": "Clover Valley®",
+   "price": 5,
    "store": "dollargeneral",
    "kind": "ad",
-   "term": "nuts",
+   "term": "coffee",
    "validTo": "2026-11-28",
-   "category": "Snacks",
-   "unitQty": 14.75,
-   "unitName": "oz"
+   "category": "Beverages",
+   "unitQty": null,
+   "unitName": null
   },
   {
-   "id": "l7rrkc",
-   "name": "Clover Valley® Soda 2 Liter",
+   "id": "14911vm",
+   "name": "Clover Valley® Soda Lover",
    "brand": "",
    "price": 1.5,
    "store": "dollargeneral",
@@ -3392,21 +3418,21 @@
    "unitName": null
   },
   {
-   "id": "1de6qfi",
-   "name": "Clover Valley® Vegetable Entertainment Crackers",
-   "brand": "Clover Valley®",
+   "id": "k08k4d",
+   "name": "Clover Valley® Vegetable Entertainment Crackers 8 oz.",
+   "brand": "",
    "price": 1.5,
    "store": "dollargeneral",
    "kind": "ad",
    "term": "crackers",
    "validTo": "2026-11-28",
    "category": "Snacks",
-   "unitQty": null,
-   "unitName": null
+   "unitQty": 8,
+   "unitName": "oz"
   },
   {
-   "id": "nks7he",
-   "name": "Clover Valley™ Chocolate Chip Cookies",
+   "id": "zcnoxx",
+   "name": "Clover Valley™ Chocolate Chip Cookies 11.75-12 oz.",
    "brand": "",
    "price": 2.75,
    "store": "dollargeneral",
@@ -3414,21 +3440,21 @@
    "term": "chocolate",
    "validTo": "2026-11-28",
    "category": "Snacks",
-   "unitQty": null,
-   "unitName": null
+   "unitQty": 12,
+   "unitName": "oz"
   },
   {
-   "id": "69prr1",
-   "name": "Clover Valley™ Lactose Free Milk 64 oz.",
-   "brand": "",
-   "price": 3.95,
+   "id": "1amiup6",
+   "name": "Clover Valley™ Mixed Nuts",
+   "brand": "Clover Valley",
+   "price": 6,
    "store": "dollargeneral",
    "kind": "ad",
-   "term": "milk",
+   "term": "nuts",
    "validTo": "2026-11-28",
-   "category": "Dairy & Eggs",
-   "unitQty": 64,
-   "unitName": "oz"
+   "category": "Snacks",
+   "unitQty": null,
+   "unitName": null
   },
   {
    "id": "lnib4f",
@@ -3446,7 +3472,7 @@
   {
    "id": "1vxs22z",
    "name": "Coca-Cola®, Sprite® or Fanta® 12 pk. cans",
-   "brand": "Coca-Cola",
+   "brand": "",
    "price": 16,
    "store": "dollargeneral",
    "kind": "ad",
@@ -3472,7 +3498,7 @@
   {
    "id": "19ha7bo",
    "name": "Combos® Stuffed Snacks",
-   "brand": "",
+   "brand": "Combos",
    "price": 6,
    "store": "dollargeneral",
    "kind": "ad",
@@ -3485,7 +3511,7 @@
   {
    "id": "196f475",
    "name": "Core™ Hydration Perfectly Balanced Water",
-   "brand": "",
+   "brand": "Core",
    "price": 4.95,
    "store": "dollargeneral",
    "kind": "ad",
@@ -3496,8 +3522,8 @@
    "unitName": null
   },
   {
-   "id": "12qi6qu",
-   "name": "Daisy® Sour Cream",
+   "id": "cpwpbp",
+   "name": "Daisy® Sour Cream 8 oz.",
    "brand": "Daisy",
    "price": 1.5,
    "store": "dollargeneral",
@@ -3505,13 +3531,13 @@
    "term": "sour cream",
    "validTo": "2026-11-28",
    "category": "Dairy & Eggs",
-   "unitQty": null,
-   "unitName": null
+   "unitQty": 8,
+   "unitName": "oz"
   },
   {
    "id": "povv3m",
    "name": "Dasani Purified Water",
-   "brand": "Dasani",
+   "brand": "",
    "price": 4.75,
    "store": "dollargeneral",
    "kind": "ad",
@@ -3574,8 +3600,8 @@
    "unitName": "oz"
   },
   {
-   "id": "1flnyze",
-   "name": "Donut Shop® or McCafé® Premium or Breakfast Blend K-Cups® 20 ct.",
+   "id": "68e444",
+   "name": "Donut Shop™ or McCafé™ Premium or Breakfast Blend K-Cups 20 ct.",
    "brand": "",
    "price": 10.95,
    "store": "dollargeneral",
@@ -3626,23 +3652,10 @@
    "unitName": "oz"
   },
   {
-   "id": "zh89u6",
-   "name": "Dr Pepper•Canada Dry•7UP•RC•Cola Sumatra•A&W 2 Liter Roasted",
-   "brand": "Dr Pepper",
-   "price": 5.97,
-   "store": "dollargeneral",
-   "kind": "ad",
-   "term": "pepper",
-   "validTo": "2026-11-28",
-   "category": "Beverages",
-   "unitQty": null,
-   "unitName": null
-  },
-  {
-   "id": "4nbsx6",
-   "name": "Dr Pepper®, Sunkist®, Canada Dry®, RC Cola®, Squirt®, 7UP®, A&W® 12 pk. cans",
+   "id": "tgdz8f",
+   "name": "Dr Pepper® Canadia Dry™ 7UP® BC® Coca-Cola Sunkist® or A&W® 2 Liter Roasted",
    "brand": "",
-   "price": 15,
+   "price": 5,
    "store": "dollargeneral",
    "kind": "ad",
    "term": "pepper",
@@ -3654,7 +3667,7 @@
   {
    "id": "okg14z",
    "name": "Edy's® Frozen Dessert 48 oz.",
-   "brand": "Edy's",
+   "brand": "",
    "price": 3.95,
    "store": "dollargeneral",
    "kind": "ad",
@@ -3665,8 +3678,8 @@
    "unitName": "oz"
   },
   {
-   "id": "1yyglfa",
-   "name": "Farm Rich® Mozzarella Cheese Sticks, Buffalo Popcorn Chicken, Pizza Crunchers or Cheese Curds 8-10 oz.",
+   "id": "mvhbge",
+   "name": "Farm Rich Mozzarella Cheese Sticks, Buffalo Popcorn Chickens, Pizza Crunchers or Cheese Curds",
    "brand": "",
    "price": 4.95,
    "store": "dollargeneral",
@@ -3674,26 +3687,26 @@
    "term": "popcorn",
    "validTo": "2026-11-28",
    "category": "Meat & Seafood",
-   "unitQty": 10,
-   "unitName": "oz"
+   "unitQty": null,
+   "unitName": null
   },
   {
-   "id": "4tog6c",
-   "name": "Febreze® PLUG™ Scented Oil Refill",
-   "brand": "",
+   "id": "xmjpno",
+   "name": "Febreze PLUS® Scented Oil Arrival 2 oz. Holiday Scents",
+   "brand": "Febreze",
    "price": 8,
    "store": "dollargeneral",
    "kind": "ad",
    "term": "",
    "validTo": "2026-11-28",
    "category": "Pantry",
-   "unitQty": null,
-   "unitName": null
+   "unitQty": 2,
+   "unitName": "oz"
   },
   {
    "id": "1t1me4l",
    "name": "Folgers® Ground Coffee",
-   "brand": "Folgers",
+   "brand": "",
    "price": 9.95,
    "store": "dollargeneral",
    "kind": "ad",
@@ -3704,8 +3717,8 @@
    "unitName": null
   },
   {
-   "id": "z8eyoz",
-   "name": "Folgers® Ground Coffee 9.6 oz. Assorted or Café Bustelo® 10 oz.",
+   "id": "4hixjv",
+   "name": "Folgers® Ground Coffee 9.6-oz, Assorted or Café Bustelo® 10-oz.",
    "brand": "",
    "price": 11,
    "store": "dollargeneral",
@@ -3713,21 +3726,21 @@
    "term": "coffee",
    "validTo": "2026-11-28",
    "category": "Beverages",
-   "unitQty": 9.6,
-   "unitName": "oz"
+   "unitQty": null,
+   "unitName": null
   },
   {
-   "id": "11hriwz",
-   "name": "Gain® Liquid Laundry Detergent 134 Load/ 177-194 oz. or Plus™Super Flings!TM 45 ct.",
-   "brand": "",
+   "id": "12oemhh",
+   "name": "Gain® Liquid Laundry Detergent or Plus™ Super Fabric Softener",
+   "brand": "Gain",
    "price": 16.95,
    "store": "dollargeneral",
    "kind": "ad",
    "term": "laundry detergent",
    "validTo": "2026-11-28",
    "category": "Household",
-   "unitQty": 194,
-   "unitName": "oz"
+   "unitQty": null,
+   "unitName": null
   },
   {
    "id": "1yq8a0e",
@@ -3769,8 +3782,8 @@
    "unitName": null
   },
   {
-   "id": "uq08pb",
-   "name": "Glad® Kitchen or Trash Bags 25 Gallons 20-52 ct.",
+   "id": "1ncszo3",
+   "name": "Glad® Kitchen or Trash Bags 13-53 Gallon",
    "brand": "",
    "price": 5.5,
    "store": "dollargeneral",
@@ -3778,13 +3791,13 @@
    "term": "trash bags",
    "validTo": "2026-11-28",
    "category": "Household",
-   "unitQty": 25,
+   "unitQty": 53,
    "unitName": "gal"
   },
   {
    "id": "zpkz8k",
    "name": "Glade® Plugins® Scented Oil Refills",
-   "brand": "",
+   "brand": "Glade",
    "price": 2.5,
    "store": "dollargeneral",
    "kind": "ad",
@@ -3795,8 +3808,8 @@
    "unitName": null
   },
   {
-   "id": "1mcpnar",
-   "name": "Good Seasons Italian Dressing Packet 0.6 oz.",
+   "id": "1qh3buw",
+   "name": "Good Seasons Italian Dressing Packet",
    "brand": "",
    "price": 1,
    "store": "dollargeneral",
@@ -3804,13 +3817,13 @@
    "term": "",
    "validTo": "2026-11-28",
    "category": "Pantry",
-   "unitQty": 0.6,
-   "unitName": "oz"
+   "unitQty": null,
+   "unitName": null
   },
   {
    "id": "1lcjfkh",
    "name": "Green Giant® Canned Vegetables 14.5-15.25 oz.",
-   "brand": "",
+   "brand": "Green Giant",
    "price": 4,
    "store": "dollargeneral",
    "kind": "ad",
@@ -3821,8 +3834,8 @@
    "unitName": "oz"
   },
   {
-   "id": "14p7xot",
-   "name": "Grown In Idaho Frozen Potatoes 24-28-oz",
+   "id": "140fvp8",
+   "name": "Grown In Idaho™ Frozen Potatoes 24-28 oz.,",
    "brand": "",
    "price": 5,
    "store": "dollargeneral",
@@ -3830,21 +3843,21 @@
    "term": "potatoes",
    "validTo": "2026-11-28",
    "category": "Frozen",
-   "unitQty": null,
-   "unitName": null
+   "unitQty": 28,
+   "unitName": "oz"
   },
   {
-   "id": "1q73t96",
-   "name": "Häagen-Dazs®Ice Cream",
-   "brand": "Häagen-Dazs",
+   "id": "1psdw7w",
+   "name": "Häagen-Dazs® Ice Cream 14 oz. Assorted or Bars 3 ct.",
+   "brand": "",
    "price": 4,
    "store": "dollargeneral",
    "kind": "ad",
    "term": "ice cream",
    "validTo": "2026-11-28",
    "category": "Frozen",
-   "unitQty": null,
-   "unitName": null
+   "unitQty": 14,
+   "unitName": "oz"
   },
   {
    "id": "bmv6wj",
@@ -3860,8 +3873,8 @@
    "unitName": "ea"
   },
   {
-   "id": "yc699q",
-   "name": "Heinz® Gravy & Stove Top® Stuffing Mix",
+   "id": "o3sf4k",
+   "name": "Heinz Gravy 12 oz. or Stove Top Stuffing Mix 6 oz.",
    "brand": "",
    "price": 4,
    "store": "dollargeneral",
@@ -3869,8 +3882,8 @@
    "term": "stuffing",
    "validTo": "2026-11-28",
    "category": "Pantry",
-   "unitQty": null,
-   "unitName": null
+   "unitQty": 12,
+   "unitName": "oz"
   },
   {
    "id": "waake2",
@@ -3886,17 +3899,17 @@
    "unitName": "oz"
   },
   {
-   "id": "ulafjc",
-   "name": "Hershey® Baking Morsels 10-12 oz. Assorted or Cocoa 6 oz.",
-   "brand": "",
+   "id": "96v3tm",
+   "name": "Hershey® Baking Morsels 41-47 g.",
+   "brand": "Hershey's",
    "price": 8,
    "store": "dollargeneral",
    "kind": "ad",
    "term": "baking",
    "validTo": "2026-11-28",
    "category": "Pantry",
-   "unitQty": 12,
-   "unitName": "oz"
+   "unitQty": 47,
+   "unitName": "g"
   },
   {
    "id": "1c4hahe",
@@ -3912,10 +3925,10 @@
    "unitName": "oz"
   },
   {
-   "id": "1h71rr9",
+   "id": "172k8c8",
    "name": "Holiday Candy",
    "brand": "",
-   "price": 3,
+   "price": 1.25,
    "store": "dollargeneral",
    "kind": "ad",
    "term": "candy",
@@ -3925,10 +3938,10 @@
    "unitName": null
   },
   {
-   "id": "172k8c8",
+   "id": "1h71rr9",
    "name": "Holiday Candy",
    "brand": "",
-   "price": 1.25,
+   "price": 3,
    "store": "dollargeneral",
    "kind": "ad",
    "term": "candy",
@@ -3977,8 +3990,8 @@
    "unitName": "oz"
   },
   {
-   "id": "ciytdh",
-   "name": "Jack Link's® Beef Jerky 2.6-2.85 oz.",
+   "id": "1ehyfke",
+   "name": "Jack Link's® Beef Jerky",
    "brand": "",
    "price": 4.85,
    "store": "dollargeneral",
@@ -3986,7 +3999,20 @@
    "term": "beef",
    "validTo": "2026-11-28",
    "category": "Meat & Seafood",
-   "unitQty": 2.85,
+   "unitQty": null,
+   "unitName": null
+  },
+  {
+   "id": "112y91a",
+   "name": "JELL-O No Bake Cheesecake Classic 11 oz.",
+   "brand": "",
+   "price": 6,
+   "store": "dollargeneral",
+   "kind": "ad",
+   "term": "",
+   "validTo": "2026-11-28",
+   "category": "Dairy & Eggs",
+   "unitQty": 11,
    "unitName": "oz"
   },
   {
@@ -4029,9 +4055,9 @@
    "unitName": "oz"
   },
   {
-   "id": "y7jcg",
-   "name": "Kleenex® Facial Tissue 60 ct.",
-   "brand": "",
+   "id": "rlvy2k",
+   "name": "Kleenex® Racial Tissue 60 ct.",
+   "brand": "Kleenex",
    "price": 5,
    "store": "dollargeneral",
    "kind": "ad",
@@ -4040,19 +4066,6 @@
    "category": "Household",
    "unitQty": 60,
    "unitName": "ea"
-  },
-  {
-   "id": "n24kh1",
-   "name": "Kraft® Deluxe Mac & Cheese 14 oz. or Velveeta® Shells & Cheese 9.4-02 oz.",
-   "brand": "",
-   "price": 2.5,
-   "store": "dollargeneral",
-   "kind": "ad",
-   "term": "mac and cheese",
-   "validTo": "2026-11-28",
-   "category": "Dairy & Eggs",
-   "unitQty": 14,
-   "unitName": "oz"
   },
   {
    "id": "4jp666",
@@ -4070,7 +4083,7 @@
   {
    "id": "1t3xoly",
    "name": "Kraft® Salad Dressing 16 oz.",
-   "brand": "",
+   "brand": "Kraft",
    "price": 5,
    "store": "dollargeneral",
    "kind": "ad",
@@ -4133,9 +4146,9 @@
    "unitName": null
   },
   {
-   "id": "1j7bt8g",
-   "name": "Maxwell House® Ground Coffee 9.9-11 oz. or K-Cups®10 ct.",
-   "brand": "",
+   "id": "18szi3g",
+   "name": "Maxwell House® Ground Coffee 5.9-11 oz. or K-Cups® 10 ct.",
+   "brand": "Maxwell House®",
    "price": 6,
    "store": "dollargeneral",
    "kind": "ad",
@@ -4198,9 +4211,9 @@
    "unitName": "oz"
   },
   {
-   "id": "7ggn97",
-   "name": "Nestle® Drumstick®, OREO® or Kit Kat® Frozen Dessert 14 oz.",
-   "brand": "Nestle | Kit Kat®",
+   "id": "1mpvq3",
+   "name": "Nestle®Drumstick®, OREO® or Kit Kat® Frozen Dessert 14 oz.",
+   "brand": "",
    "price": 5,
    "store": "dollargeneral",
    "kind": "ad",
@@ -4237,8 +4250,8 @@
    "unitName": "oz"
   },
   {
-   "id": "1e8iocg",
-   "name": "Orville Redenbacher's® Gourmet® Popping Corn 3 pk.",
+   "id": "l7pro2",
+   "name": "Orville Redenbacher's® Gourmet Popping Corn 3 pk.",
    "brand": "",
    "price": 3,
    "store": "dollargeneral",
@@ -4289,8 +4302,8 @@
    "unitName": null
   },
   {
-   "id": "1ow72ta",
-   "name": "Pepsi® or Mountain Dew® 12 pk. cans Assorted",
+   "id": "8m988p",
+   "name": "Pepsi® or Mountain Dew® 12 pk. cans",
    "brand": "",
    "price": 15,
    "store": "dollargeneral",
@@ -4330,7 +4343,7 @@
   {
    "id": "1ceyzid",
    "name": "Philadelphia® Cream Cheese 8 oz.",
-   "brand": "",
+   "brand": "PHILADELPHIA",
    "price": 5,
    "store": "dollargeneral",
    "kind": "ad",
@@ -4341,9 +4354,9 @@
    "unitName": "oz"
   },
   {
-   "id": "16zz47d",
-   "name": "Pillsbury® Grands! Biscuits Buttermilk or Flaky, Crescents or Rolls 8-16.3 oz.",
-   "brand": "Pillsbury",
+   "id": "fgmr57",
+   "name": "Pillbury™ Grands™ Biscuits Buttermilk or Flaky, Crescents or Rolls 8-16.3 oz.",
+   "brand": "",
    "price": 4,
    "store": "dollargeneral",
    "kind": "ad",
@@ -4354,17 +4367,17 @@
    "unitName": "oz"
   },
   {
-   "id": "ecmbv2",
-   "name": "Pillsbury® Ready-To-Bake Cookie Dough 16-16.5 oz.",
-   "brand": "",
+   "id": "qhg4a3",
+   "name": "Pillsbury Ready-To-Bake Cookie Dough",
+   "brand": "Pillsbury",
    "price": 6,
    "store": "dollargeneral",
    "kind": "ad",
    "term": "cookie",
    "validTo": "2026-11-28",
    "category": "Snacks",
-   "unitQty": 16.5,
-   "unitName": "oz"
+   "unitQty": null,
+   "unitName": null
   },
   {
    "id": "9odctp",
@@ -4380,17 +4393,17 @@
    "unitName": "oz"
   },
   {
-   "id": "kqh7ya",
-   "name": "Progresso® Soup 18.5-19 oz.",
-   "brand": "",
+   "id": "101v1e0",
+   "name": "Progresso® Soup",
+   "brand": "Progresso",
    "price": 6,
    "store": "dollargeneral",
    "kind": "ad",
    "term": "soup",
    "validTo": "2026-11-28",
    "category": "Pantry",
-   "unitQty": 19,
-   "unitName": "oz"
+   "unitQty": null,
+   "unitName": null
   },
   {
    "id": "1aqadd6",
@@ -4406,28 +4419,41 @@
    "unitName": null
   },
   {
-   "id": "1i16zxz",
-   "name": "Purex® Liquid Laundry Detergent",
-   "brand": "",
+   "id": "1xlcr89",
+   "name": "Purex® Liquid Laundry Detergent 85-151 Load/128-199 oz.",
+   "brand": "Purex",
    "price": 3,
    "store": "dollargeneral",
    "kind": "ad",
    "term": "laundry detergent",
    "validTo": "2026-11-28",
    "category": "Household",
-   "unitQty": null,
-   "unitName": null
+   "unitQty": 199,
+   "unitName": "oz"
   },
   {
-   "id": "qzq4qa",
-   "name": "Rice-A-Roni® or Pasta Roni®",
-   "brand": "Rice-A-Roni®",
+   "id": "a9b2r9",
+   "name": "RICE-A-RONI AND PASTA-RONI",
+   "brand": "",
    "price": 5,
    "store": "dollargeneral",
    "kind": "ad",
    "term": "pasta",
    "validTo": "2026-11-28",
    "category": "Pantry",
+   "unitQty": null,
+   "unitName": null
+  },
+  {
+   "id": "1vvn628",
+   "name": "Roasted Chicken Rice",
+   "brand": "",
+   "price": 1.95,
+   "store": "dollargeneral",
+   "kind": "ad",
+   "term": "chicken",
+   "validTo": "2026-11-28",
+   "category": "Meat & Seafood",
    "unitQty": null,
    "unitName": null
   },
@@ -4458,19 +4484,6 @@
    "unitName": "sheet"
   },
   {
-   "id": "optkhn",
-   "name": "Single Serve Coffee Pods 12 ct.",
-   "brand": "",
-   "price": 5,
-   "store": "dollargeneral",
-   "kind": "ad",
-   "term": "coffee",
-   "validTo": "2026-11-28",
-   "category": "Beverages",
-   "unitQty": 12,
-   "unitName": "ea"
-  },
-  {
    "id": "64lk6i",
    "name": "Smart Care® Napkins 160 ct.",
    "brand": "",
@@ -4484,8 +4497,8 @@
    "unitName": "ea"
   },
   {
-   "id": "d3rprx",
-   "name": "Smithfield® Bacon",
+   "id": "1tyx247",
+   "name": "Smithfield® Bacon 12 oz.",
    "brand": "",
    "price": 5.25,
    "store": "dollargeneral",
@@ -4493,13 +4506,13 @@
    "term": "bacon",
    "validTo": "2026-11-28",
    "category": "Meat & Seafood",
-   "unitQty": null,
-   "unitName": null
+   "unitQty": 12,
+   "unitName": "oz"
   },
   {
    "id": "u0dsd5",
    "name": "Smithfield® Breakfast Sausage Roll Mild",
-   "brand": "",
+   "brand": "Smithfield",
    "price": 4.75,
    "store": "dollargeneral",
    "kind": "ad",
@@ -4510,29 +4523,42 @@
    "unitName": null
   },
   {
-   "id": "15ioxre",
-   "name": "Snapple®",
-   "brand": "",
+   "id": "18g93bd",
+   "name": "Snapple® 6-pk/16 oz. ea.",
+   "brand": "Snapple",
    "price": 4.95,
    "store": "dollargeneral",
    "kind": "ad",
    "term": "",
    "validTo": "2026-11-28",
    "category": "Produce",
+   "unitQty": 16,
+   "unitName": "oz"
+  },
+  {
+   "id": "1ayim6b",
+   "name": "Sparkle® Paper Towel Products",
+   "brand": "Sparkle",
+   "price": 3,
+   "store": "dollargeneral",
+   "kind": "ad",
+   "term": "paper towel",
+   "validTo": "2026-11-28",
+   "category": "Household",
    "unitQty": null,
    "unitName": null
   },
   {
-   "id": "vca6jr",
-   "name": "Swanson® Broth Chicken or Beef 32 oz.",
+   "id": "cns2w5",
+   "name": "Swanson® Broth (53 oz)",
    "brand": "Swanson",
    "price": 4,
    "store": "dollargeneral",
    "kind": "ad",
-   "term": "chicken",
+   "term": "broth",
    "validTo": "2026-11-28",
-   "category": "Meat & Seafood",
-   "unitQty": 32,
+   "category": "Pantry",
+   "unitQty": 53,
    "unitName": "oz"
   },
   {
@@ -4547,19 +4573,6 @@
    "category": "Snacks",
    "unitQty": null,
    "unitName": null
-  },
-  {
-   "id": "1cxo2yp",
-   "name": "Tide® Pods™ 57 ct., Power Pods™ 32 ct. or Liquid Laundry Detergent 65 Load/92 oz. or Downy®Beads 21.1-24 oz.",
-   "brand": "",
-   "price": 12.95,
-   "store": "dollargeneral",
-   "kind": "ad",
-   "term": "laundry detergent",
-   "validTo": "2026-11-28",
-   "category": "Household",
-   "unitQty": 57,
-   "unitName": "ea"
   },
   {
    "id": "65rgna",
@@ -4616,7 +4629,7 @@
   {
    "id": "1atekk3",
    "name": "True Living® Essentials Paper Towels Single roll",
-   "brand": "",
+   "brand": "True Living®",
    "price": 4.5,
    "store": "dollargeneral",
    "kind": "ad",
@@ -4679,6 +4692,19 @@
    "unitName": null
   },
   {
+   "id": "1n4trnc",
+   "name": "Velveeta® Shells & Cheese 9.4-12 oz.",
+   "brand": "",
+   "price": 2.5,
+   "store": "dollargeneral",
+   "kind": "ad",
+   "term": "cheese",
+   "validTo": "2026-11-28",
+   "category": "Dairy & Eggs",
+   "unitQty": 12,
+   "unitName": "oz"
+  },
+  {
    "id": "yks4k5",
    "name": "Viva® Paper Towels Signature ClothTM 2 Double rolls",
    "brand": "",
@@ -4692,8 +4718,8 @@
    "unitName": null
   },
   {
-   "id": "1hyza26",
-   "name": "Welch's Sparkling Juice",
+   "id": "hwg1ek",
+   "name": "Welch's® Sparkling Juice 25.4 oz.",
    "brand": "Welch's",
    "price": 3.75,
    "store": "dollargeneral",
@@ -4701,8 +4727,8 @@
    "term": "sparkling",
    "validTo": "2026-11-28",
    "category": "Beverages",
-   "unitQty": null,
-   "unitName": null
+   "unitQty": 25.4,
+   "unitName": "oz"
   },
   {
    "id": "1sw3c95",
@@ -13038,8 +13064,8 @@
    "unitName": null
   },
   {
-   "id": "cp0wk",
-   "name": "Barilla 16-oz. pasta",
+   "id": "bmw25e",
+   "name": "Barilla 16-oz. pasta.",
    "brand": "Barilla",
    "price": 5,
    "store": "target",
@@ -13051,8 +13077,8 @@
    "unitName": null
   },
   {
-   "id": "z1v6cz",
-   "name": "Biom Baby Little Mess 40-cit. fragrance-free wipes",
+   "id": "1m1rtvu",
+   "name": "Biom Baby Little Mess 40-ct. fragrance-free wipes",
    "brand": "Biom Baby",
    "price": 14.99,
    "store": "target",
@@ -13064,10 +13090,10 @@
    "unitName": null
   },
   {
-   "id": "13yqig2",
-   "name": "BOUNTY SELECT-A-SIZE 6-CT. 2-PLY PAPER TOWELS.",
+   "id": "kxjnob",
+   "name": "BOUNTY SELECT-A-SIZE 12-ct. 2-ply paper towels",
    "brand": "Bounty",
-   "price": 16.99,
+   "price": 33.49,
    "store": "target",
    "kind": "ad",
    "term": "paper towels",
@@ -13077,15 +13103,15 @@
    "unitName": null
   },
   {
-   "id": "d6okch",
-   "name": "BUBBL'R 6-pk. sparkling water",
-   "brand": "Bubbl'r",
-   "price": 12,
+   "id": "1okgkv6",
+   "name": "Bounty Select-a-Size 6-ct. 2-ply paper towels.",
+   "brand": "Bounty",
+   "price": 16.99,
    "store": "target",
    "kind": "ad",
-   "term": "sparkling water",
+   "term": "paper towels",
    "validTo": "2026-11-29",
-   "category": "Beverages",
+   "category": "Household",
    "unitQty": null,
    "unitName": null
   },
@@ -13129,8 +13155,8 @@
    "unitName": null
   },
   {
-   "id": "35p5k0",
-   "name": "Charmin Ultra Soft 12.ct. bath tissue rolls.",
+   "id": "1fw3mqs",
+   "name": "Charmin Ultra Soft 12 ct. bath tissue rolls",
    "brand": "Charmin",
    "price": 19.99,
    "store": "target",
@@ -13138,13 +13164,13 @@
    "term": "tissue",
    "validTo": "2026-11-29",
    "category": "Bakery",
-   "unitQty": null,
-   "unitName": null
+   "unitQty": 12,
+   "unitName": "ea"
   },
   {
-   "id": "14n3q8d",
-   "name": "Columbus Craft Meats 6-ct. paninos",
-   "brand": "Columbus",
+   "id": "acug0e",
+   "name": "Columbus Craft Meats 6.ct. paninos",
+   "brand": "",
    "price": 5.99,
    "store": "target",
    "kind": "ad",
@@ -13233,19 +13259,6 @@
    "unitName": null
   },
   {
-   "id": "apmbsg",
-   "name": "Glad winter edition 300-sq.-ft. cling wrap.",
-   "brand": "Glad",
-   "price": 3.99,
-   "store": "target",
-   "kind": "ad",
-   "term": "wrap",
-   "validTo": "2026-11-29",
-   "category": "Household",
-   "unitQty": null,
-   "unitName": null
-  },
-  {
    "id": "nzvjhz",
    "name": "Good & Gather 1-lb. butter.",
    "brand": "Good & Gather",
@@ -13324,8 +13337,8 @@
    "unitName": null
   },
   {
-   "id": "zujndx",
-   "name": "Hefty ocean water scent 52-ct. small drawstring trash bags.",
+   "id": "gxe84n",
+   "name": "Hefty ocean water scent 52-cd. small drawstring trash bags",
    "brand": "Hefty",
    "price": 9.79,
    "store": "target",
@@ -13363,26 +13376,13 @@
    "unitName": null
   },
   {
-   "id": "v8k63h",
-   "name": "Jif 40-oz. peanut butter",
+   "id": "ty2zao",
+   "name": "Jif peanut butter",
    "brand": "Jif",
-   "price": 5.99,
+   "price": 5.49,
    "store": "target",
    "kind": "ad",
    "term": "peanut butter",
-   "validTo": "2026-11-29",
-   "category": "Pantry",
-   "unitQty": null,
-   "unitName": null
-  },
-  {
-   "id": "om4hzm",
-   "name": "Kellogg's family-size cereal",
-   "brand": "Kellogg's",
-   "price": 9,
-   "store": "target",
-   "kind": "ad",
-   "term": "cereal",
    "validTo": "2026-11-29",
    "category": "Pantry",
    "unitQty": null,
@@ -13402,8 +13402,8 @@
    "unitName": null
   },
   {
-   "id": "7x234p",
-   "name": "Kleenex Ultra Soft 4 Ct. holiday facial tissue boxes.",
+   "id": "18ns22z",
+   "name": "Kleenex Ultra Soft 4 Ct. holiday facial tissue boxes†",
    "brand": "Kleenex",
    "price": 6.99,
    "store": "target",
@@ -13424,19 +13424,6 @@
    "term": "sparkling water",
    "validTo": "2026-11-29",
    "category": "Beverages",
-   "unitQty": null,
-   "unitName": null
-  },
-  {
-   "id": "15bqaar",
-   "name": "Lay's & more snacks.",
-   "brand": "Lay's",
-   "price": 5,
-   "store": "target",
-   "kind": "ad",
-   "term": "",
-   "validTo": "2026-11-29",
-   "category": "Snacks",
    "unitQty": null,
    "unitName": null
   },
@@ -13467,9 +13454,9 @@
    "unitName": null
   },
   {
-   "id": "1rmosvq",
-   "name": "Mrs. Meyer's gingerbread scent plug-in diffuser kit*",
-   "brand": "Mrs. Meyer's Clean Day",
+   "id": "qzkw6k",
+   "name": "Mrs. Meyer's gingerbread scent plug-in diffuser kit †",
+   "brand": "Mrs. Meyer's",
    "price": 9.99,
    "store": "target",
    "kind": "ad",
@@ -13480,8 +13467,8 @@
    "unitName": null
   },
   {
-   "id": "xf8ou9",
-   "name": "Mrs. Meyer's Iowa pine scent 16-oz. all purpose cleaner.†",
+   "id": "16vrycz",
+   "name": "Mrs. Meyer's Iowa pine scent 16-oz. all purpose cleaner",
    "brand": "Mrs. Meyer's",
    "price": 5.29,
    "store": "target",
@@ -13506,19 +13493,6 @@
    "unitName": null
   },
   {
-   "id": "5xvy9n",
-   "name": "Mrs. Meyer's snowdrop scent 16-oz. dish soap.",
-   "brand": "Mrs. Meyer's",
-   "price": 5.29,
-   "store": "target",
-   "kind": "ad",
-   "term": "dish soap",
-   "validTo": "2026-11-29",
-   "category": "Household",
-   "unitQty": null,
-   "unitName": null
-  },
-  {
    "id": "8y2il9",
    "name": "Pampers Amore 58-diapers",
    "brand": "Pampers",
@@ -13532,17 +13506,17 @@
    "unitName": null
   },
   {
-   "id": "13ixr7c",
-   "name": "Parasol RashShield Protection 52-diaper",
+   "id": "1k4wz7n",
+   "name": "Parasol RashShield Protection 52 ct. diapers",
    "brand": "Parasol",
    "price": 29.99,
    "store": "target",
    "kind": "ad",
-   "term": "diaper",
+   "term": "diapers",
    "validTo": "2026-11-29",
    "category": "Household",
-   "unitQty": null,
-   "unitName": null
+   "unitQty": 52,
+   "unitName": "ea"
   },
   {
    "id": "11n0jn0",
@@ -13554,19 +13528,6 @@
    "term": "cheese",
    "validTo": "2026-11-29",
    "category": "Dairy & Eggs",
-   "unitQty": null,
-   "unitName": null
-  },
-  {
-   "id": "m4ejzb",
-   "name": "Ritz snacks",
-   "brand": "Ritz",
-   "price": 7,
-   "store": "target",
-   "kind": "ad",
-   "term": "",
-   "validTo": "2026-11-29",
-   "category": "Snacks",
    "unitQty": null,
    "unitName": null
   },
@@ -13584,6 +13545,32 @@
    "unitName": null
   },
   {
+   "id": "mqk21r",
+   "name": "SALE BUBBLR 6-pk. sparkling water",
+   "brand": "Bubbl'r",
+   "price": 12,
+   "store": "target",
+   "kind": "ad",
+   "term": "sparkling water",
+   "validTo": "2026-11-29",
+   "category": "Beverages",
+   "unitQty": null,
+   "unitName": null
+  },
+  {
+   "id": "bhk4i4",
+   "name": "Sale Select Smartfood, Popcorners, Lay's & more snacks",
+   "brand": "Smartfood",
+   "price": 5,
+   "store": "target",
+   "kind": "ad",
+   "term": "",
+   "validTo": "2026-11-29",
+   "category": "Snacks",
+   "unitQty": null,
+   "unitName": null
+  },
+  {
    "id": "1uiv0yu",
    "name": "Sale Waterpik Ultra water flosser",
    "brand": "waterpik",
@@ -13593,19 +13580,6 @@
    "term": "",
    "validTo": "2026-11-29",
    "category": "Household",
-   "unitQty": null,
-   "unitName": null
-  },
-  {
-   "id": "1koa3jw",
-   "name": "Select Ace Bakery bread",
-   "brand": "",
-   "price": 3.99,
-   "store": "target",
-   "kind": "ad",
-   "term": "bread",
-   "validTo": "2026-11-29",
-   "category": "Bakery",
    "unitQty": null,
    "unitName": null
   },
@@ -13662,22 +13636,9 @@
    "unitName": null
   },
   {
-   "id": "1xwhu7j",
-   "name": "Select Food Wrap & Storage",
+   "id": "l8msj6",
+   "name": "Select Frito-Lay Minis snacks",
    "brand": "",
-   "price": 3.49,
-   "store": "target",
-   "kind": "ad",
-   "term": "wrap",
-   "validTo": "2026-11-29",
-   "category": "Household",
-   "unitQty": null,
-   "unitName": null
-  },
-  {
-   "id": "1pmtw4g",
-   "name": "Select Frito-Lay Minis snacks.",
-   "brand": "Frito-Lay",
    "price": 4,
    "store": "target",
    "kind": "ad",
@@ -13753,6 +13714,19 @@
    "unitName": null
   },
   {
+   "id": "1bj1kb6",
+   "name": "Select Kellogg's family-size cereal",
+   "brand": "Kellogg's",
+   "price": 9,
+   "store": "target",
+   "kind": "ad",
+   "term": "cereal",
+   "validTo": "2026-11-29",
+   "category": "Pantry",
+   "unitQty": null,
+   "unitName": null
+  },
+  {
    "id": "9ufyln",
    "name": "Select Kinder's seasoning blends",
    "brand": "Kinder's",
@@ -13779,8 +13753,8 @@
    "unitName": null
   },
   {
-   "id": "16ot7gn",
-   "name": "Select Market Pantry™ bacon.",
+   "id": "1xi8gmx",
+   "name": "Select Market Pantry™ bacon",
    "brand": "Market Pantry",
    "price": 4.39,
    "store": "target",
@@ -13818,6 +13792,19 @@
    "unitName": null
   },
   {
+   "id": "1dqgi5r",
+   "name": "Select Triscuit, Wheat Thins & Ritz snacks",
+   "brand": "Triscuit",
+   "price": 7,
+   "store": "target",
+   "kind": "ad",
+   "term": "",
+   "validTo": "2026-11-29",
+   "category": "Snacks",
+   "unitQty": null,
+   "unitName": null
+  },
+  {
    "id": "qfxunb",
    "name": "SodaStream E-Duo sparkling water marker kit",
    "brand": "SodaStream",
@@ -13840,19 +13827,6 @@
    "term": "stuffing",
    "validTo": "2026-11-29",
    "category": "Pantry",
-   "unitQty": null,
-   "unitName": null
-  },
-  {
-   "id": "1by0e15",
-   "name": "SunChips snacks",
-   "brand": "SunChips",
-   "price": 5,
-   "store": "target",
-   "kind": "ad",
-   "term": "",
-   "validTo": "2026-11-29",
-   "category": "Snacks",
    "unitQty": null,
    "unitName": null
   },
@@ -13883,19 +13857,6 @@
    "unitName": null
   },
   {
-   "id": "9ww01h",
-   "name": "Triscuit snacks",
-   "brand": "Triscuit",
-   "price": 7,
-   "store": "target",
-   "kind": "ad",
-   "term": "",
-   "validTo": "2026-11-29",
-   "category": "Snacks",
-   "unitQty": null,
-   "unitName": null
-  },
-  {
    "id": "oaqp9x",
    "name": "Tropicana 46-oz. orange juice",
    "brand": "Tropicana",
@@ -13909,8 +13870,8 @@
    "unitName": null
   },
   {
-   "id": "10zqd3s",
-   "name": "up&up Ultra Soft 4 ct. holiday facial tissue boxes.",
+   "id": "6qcmi2",
+   "name": "up&up Ultra Soft 4 Ct. holiday facial tissue boxes†",
    "brand": "up&up",
    "price": 6.49,
    "store": "target",
@@ -13922,17 +13883,17 @@
    "unitName": "ea"
   },
   {
-   "id": "10cc2x",
-   "name": "up&up unscented 50 Ct. tall kitchen 13-gallon trash bags.",
-   "brand": "up & up",
+   "id": "un7i2w",
+   "name": "up&up unscented 50-ct. tall kitchen 13-gallon trash bags",
+   "brand": "up&up",
    "price": 9.49,
    "store": "target",
    "kind": "ad",
    "term": "trash bags",
    "validTo": "2026-11-29",
    "category": "Household",
-   "unitQty": 50,
-   "unitName": "ea"
+   "unitQty": null,
+   "unitName": null
   },
   {
    "id": "zbxku9",
