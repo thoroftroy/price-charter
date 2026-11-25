@@ -1,6 +1,6 @@
 {
  "source": "This week's store ads (via Flipp)",
- "updated": "2026-11-24",
+ "updated": "2026-11-25",
  "zip": "84101",
  "place": "Salt Lake City, UT 84101",
  "stores": [
@@ -8,6 +8,16 @@
    "id": "costco",
    "name": "Costco",
    "color": "#d50032"
+  },
+  {
+   "id": "familydollar",
+   "name": "Family Dollar",
+   "color": "#dc2626"
+  },
+  {
+   "id": "walmart",
+   "name": "Walmart",
+   "color": "#0071ce"
   },
   {
    "id": "sprouts",
@@ -35,24 +45,9 @@
    "color": "#0b5ed7"
   },
   {
-   "id": "dollargeneral",
-   "name": "Dollar General",
-   "color": "#ca8a04"
-  },
-  {
-   "id": "walmart",
-   "name": "Walmart",
-   "color": "#0071ce"
-  },
-  {
    "id": "maceys",
    "name": "Macey's",
    "color": "#b91c1c"
-  },
-  {
-   "id": "familydollar",
-   "name": "Family Dollar",
-   "color": "#dc2626"
   },
   {
    "id": "freshmarket",
@@ -68,6 +63,11 @@
    "id": "albertsons",
    "name": "Albertsons",
    "color": "#2563eb"
+  },
+  {
+   "id": "dollargeneral",
+   "name": "Dollar General",
+   "color": "#ca8a04"
   },
   {
    "id": "target",
@@ -3392,8 +3392,8 @@
    "unitName": "lb"
   },
   {
-   "id": "1nbq0tn",
-   "name": "Clover Valley® Single Serve Coffee Pads",
+   "id": "1nllvp5",
+   "name": "Clover Valley® Single Serve Coffee Pods",
    "brand": "Clover Valley®",
    "price": 5,
    "store": "dollargeneral",
@@ -3405,8 +3405,8 @@
    "unitName": null
   },
   {
-   "id": "14911vm",
-   "name": "Clover Valley® Soda Lover",
+   "id": "l7rrkc",
+   "name": "Clover Valley® Soda 2 Liter",
    "brand": "",
    "price": 1.5,
    "store": "dollargeneral",
@@ -3652,8 +3652,8 @@
    "unitName": "oz"
   },
   {
-   "id": "tgdz8f",
-   "name": "Dr Pepper® Canadia Dry™ 7UP® BC® Coca-Cola Sunkist® or A&W® 2 Liter Roasted",
+   "id": "jbld8m",
+   "name": "Dr Pepper® Canada Dry™ 7UP® RC® Coca-Cola Sunkist® or A&W® 2 Liter Roasted",
    "brand": "",
    "price": 5,
    "store": "dollargeneral",
@@ -3691,8 +3691,8 @@
    "unitName": null
   },
   {
-   "id": "xmjpno",
-   "name": "Febreze PLUS® Scented Oil Arrival 2 oz. Holiday Scents",
+   "id": "1f362it",
+   "name": "Febreze PLUG® Scented Oil Refill 2 oz. Holiday Scents",
    "brand": "Febreze",
    "price": 8,
    "store": "dollargeneral",
@@ -4055,8 +4055,8 @@
    "unitName": "oz"
   },
   {
-   "id": "rlvy2k",
-   "name": "Kleenex® Racial Tissue 60 ct.",
+   "id": "y7jcg",
+   "name": "Kleenex® Facial Tissue 60 ct.",
    "brand": "Kleenex",
    "price": 5,
    "store": "dollargeneral",
@@ -4354,19 +4354,6 @@
    "unitName": "oz"
   },
   {
-   "id": "fgmr57",
-   "name": "Pillbury™ Grands™ Biscuits Buttermilk or Flaky, Crescents or Rolls 8-16.3 oz.",
-   "brand": "",
-   "price": 4,
-   "store": "dollargeneral",
-   "kind": "ad",
-   "term": "roll",
-   "validTo": "2026-11-28",
-   "category": "Dairy & Eggs",
-   "unitQty": 16.3,
-   "unitName": "oz"
-  },
-  {
    "id": "qhg4a3",
    "name": "Pillsbury Ready-To-Bake Cookie Dough",
    "brand": "Pillsbury",
@@ -4378,6 +4365,19 @@
    "category": "Snacks",
    "unitQty": null,
    "unitName": null
+  },
+  {
+   "id": "1vx9su6",
+   "name": "Pillsbury™ Grands™ Biscuits Buttermilk or Flaky, Crescents or Rolls 8-16.3 oz.",
+   "brand": "",
+   "price": 4,
+   "store": "dollargeneral",
+   "kind": "ad",
+   "term": "roll",
+   "validTo": "2026-11-28",
+   "category": "Dairy & Eggs",
+   "unitQty": 16.3,
+   "unitName": "oz"
   },
   {
    "id": "9odctp",
@@ -4549,16 +4549,16 @@
    "unitName": null
   },
   {
-   "id": "cns2w5",
-   "name": "Swanson® Broth (53 oz)",
+   "id": "vca6jr",
+   "name": "Swanson® Broth Chicken or Beef 32 oz.",
    "brand": "Swanson",
    "price": 4,
    "store": "dollargeneral",
    "kind": "ad",
-   "term": "broth",
+   "term": "chicken",
    "validTo": "2026-11-28",
-   "category": "Pantry",
-   "unitQty": 53,
+   "category": "Meat & Seafood",
+   "unitQty": 32,
    "unitName": "oz"
   },
   {
@@ -4653,8 +4653,8 @@
    "unitName": "ea"
   },
   {
-   "id": "1hx28gu",
-   "name": "True Living® Paper Plates Everday 10 in./84 ct. or Ultra 10 in./60 ct. or Mega 8.5 in./130 ct.",
+   "id": "30wdp3",
+   "name": "True Living® Paper Plates Everyday 10 in./84 ct. or Ultra 10 in./60 ct. or Mega 8.5 in./130 ct.",
    "brand": "",
    "price": 6.25,
    "store": "dollargeneral",
@@ -13909,27 +13909,53 @@
    "unitName": null
   },
   {
-   "id": "hgavhe",
-   "name": "\"JIFFY\" Corn Muffin Mix, 8.5 oz Box",
+   "id": "cddbwq",
+   "name": "\"JIFFY\" Corn Muffin Mix",
    "brand": "\"JIFFY\"",
-   "price": 0.5,
+   "price": 0.6,
    "store": "walmart",
    "kind": "ad",
    "term": "muffin",
-   "validTo": "2026-11-24",
+   "validTo": "2026-11-30",
    "category": "Bakery",
-   "unitQty": 8.5,
-   "unitName": "oz"
+   "unitQty": null,
+   "unitName": null
   },
   {
-   "id": "e5l1fl",
-   "name": "Brite by Scotch-Brite 2-Sided Scrub & Wipe, Scrubbing Kitchen and Dish Sponge, Fuchsia Frenzy",
+   "id": "17asbng",
+   "name": "Arm & Hammer Plug-In Scented Oil Air Freshener Refill, Ocean Breeze",
+   "brand": "Arm & Hammer",
+   "price": 9.78,
+   "store": "walmart",
+   "kind": "ad",
+   "term": "",
+   "validTo": "2026-11-30",
+   "category": "Pantry",
+   "unitQty": null,
+   "unitName": null
+  },
+  {
+   "id": "16p27xt",
+   "name": "Aroma Professional 20-Cup Digital Rice & Grain Multicooker and Slow Cooker with Glass Top and 2X Bonded Granite Ceramic Non-Stick, White",
+   "brand": "Aroma",
+   "price": 49.98,
+   "store": "walmart",
+   "kind": "ad",
+   "term": "rice",
+   "validTo": "2026-11-30",
+   "category": "Pantry",
+   "unitQty": null,
+   "unitName": null
+  },
+  {
+   "id": "1hpdytl",
+   "name": "Brite by Scotch-Brite 2-Sided Scrub & Wipe, Scrubbing Kitchen and Dish Sponge, Fuchsia Frenzy, 1 Scrub Sponge",
    "brand": "Scotch-Brite",
    "price": 3.48,
    "store": "walmart",
    "kind": "ad",
    "term": "sponge",
-   "validTo": "2026-11-24",
+   "validTo": "2026-11-30",
    "category": "Household",
    "unitQty": null,
    "unitName": null
@@ -13942,153 +13968,140 @@
    "store": "walmart",
    "kind": "ad",
    "term": "turkey",
-   "validTo": "2026-11-24",
+   "validTo": "2026-11-30",
    "category": "Frozen",
    "unitQty": 16,
    "unitName": "lb"
   },
   {
-   "id": "2zrt18",
-   "name": "Campbell's Condensed Cream of Mushroom Soup, 10.5 oz Can",
-   "brand": "Campbell's",
-   "price": 1,
-   "store": "walmart",
-   "kind": "ad",
-   "term": "mushroom",
-   "validTo": "2026-11-24",
-   "category": "Produce",
-   "unitQty": 10.5,
-   "unitName": "oz"
-  },
-  {
-   "id": "1x1jelb",
-   "name": "Charmin Toilet Paper Ultra Strong, 12 Mega XL Rolls, 2-ply Bath Tissue",
-   "brand": "Charmin",
-   "price": 17.96,
-   "store": "walmart",
-   "kind": "ad",
-   "term": "toilet paper",
-   "validTo": "2026-11-24",
-   "category": "Household",
-   "unitQty": null,
-   "unitName": null
-  },
-  {
-   "id": "t4q6kw",
-   "name": "Dawn Platinum Plus, Liquid Dish Soap",
+   "id": "1kmhzfy",
+   "name": "Dawn Platinum Dish Soap, Dishwashing Liquid, Fresh Rain",
    "brand": "Dawn",
-   "price": 9.94,
+   "price": 4.94,
    "store": "walmart",
    "kind": "ad",
    "term": "dish soap",
-   "validTo": "2026-11-24",
+   "validTo": "2026-11-30",
    "category": "Household",
    "unitQty": null,
    "unitName": null
   },
   {
-   "id": "7j4aos",
-   "name": "Finish Ultimate Quantum Dishwasher Pods, Dishwasher Detergent Dish Soap, 50% More Cleaning Power",
-   "brand": "Finish",
-   "price": 20.48,
-   "store": "walmart",
-   "kind": "ad",
-   "term": "dishwasher",
-   "validTo": "2026-11-24",
-   "category": "Household",
-   "unitQty": null,
-   "unitName": null
-  },
-  {
-   "id": "39oln4",
-   "name": "Gain Plus Laundry Detergent Liquid, Now with Odor Defense + OXI, Waterfall Delight Scent",
-   "brand": "Gain",
-   "price": 21.94,
-   "store": "walmart",
-   "kind": "ad",
-   "term": "laundry detergent",
-   "validTo": "2026-11-24",
-   "category": "Household",
-   "unitQty": null,
-   "unitName": null
-  },
-  {
-   "id": "1hnlv8b",
-   "name": "Great Value 4-Gallon Small Drawstring Trash Bags, Eucalyptus Mint Scent",
-   "brand": "Great Value",
-   "price": 4.36,
-   "store": "walmart",
-   "kind": "ad",
-   "term": "trash bags",
-   "validTo": "2026-11-24",
-   "category": "Household",
-   "unitQty": null,
-   "unitName": null
-  },
-  {
-   "id": "1rsu8sm",
-   "name": "Great Value Brown Gravy Mix, 0.87 oz Packet",
-   "brand": "Great Value",
-   "price": 0.28,
-   "store": "walmart",
-   "kind": "ad",
-   "term": "gravy",
-   "validTo": "2026-11-24",
-   "category": "Pantry",
-   "unitQty": 0.87,
-   "unitName": "oz"
-  },
-  {
-   "id": "1u7t2xo",
-   "name": "Great Value French Fried Onions Salad Topping, 6 oz (Resealable Bag)",
-   "brand": "Great Value",
-   "price": 1.06,
-   "store": "walmart",
-   "kind": "ad",
-   "term": "onions",
-   "validTo": "2026-11-24",
-   "category": "Produce",
-   "unitQty": 6,
-   "unitName": "oz"
-  },
-  {
-   "id": "1quj3bh",
-   "name": "Great Value Frozen Traditional 9-inch Pie Crusts and Pans, 15 oz, 2 Count",
-   "brand": "Great Value",
-   "price": 1.36,
-   "store": "walmart",
-   "kind": "ad",
-   "term": "pie",
-   "validTo": "2026-11-24",
-   "category": "Frozen",
-   "unitQty": 15,
-   "unitName": "oz"
-  },
-  {
-   "id": "1moy0i1",
-   "name": "Hiphuta 47\"Farmhouse Sideboard Storage Cabinets with 4 Doors & 2 Drawers, Coffee Bar with Brown Top for Living Room, White",
-   "brand": "Hiphuta",
-   "price": 149.99,
+   "id": "pvraid",
+   "name": "Dunkin' Decaf Original Blend Ground Coffee, Medium Roast",
+   "brand": "Dunkin’",
+   "price": 8.97,
    "store": "walmart",
    "kind": "ad",
    "term": "coffee",
-   "validTo": "2026-11-24",
+   "validTo": "2026-11-30",
    "category": "Beverages",
    "unitQty": null,
    "unitName": null
   },
   {
-   "id": "1w0mucx",
-   "name": "Kleenex Lotion with Coconut Oil 3-Ply Cube Box Facial Tissues",
-   "brand": "Kleenex",
-   "price": 5.88,
+   "id": "7ik9ur",
+   "name": "Finish Ultimate Quantum Dishwasher Pods, Dishwasher Detergent Dish Soap, 50% More Cleaning Power",
+   "brand": "Finish",
+   "price": 17.94,
    "store": "walmart",
    "kind": "ad",
-   "term": "tissues",
-   "validTo": "2026-11-24",
+   "term": "dishwasher",
+   "validTo": "2026-11-30",
    "category": "Household",
    "unitQty": null,
    "unitName": null
+  },
+  {
+   "id": "fnx43d",
+   "name": "Finish Ultimate Quantum Dishwasher Pods, Dishwasher Detergent Dish Soap, 50% More Cleaning Power, 70 Tabs",
+   "brand": "Finish",
+   "price": 20.48,
+   "store": "walmart",
+   "kind": "ad",
+   "term": "dishwasher",
+   "validTo": "2026-11-30",
+   "category": "Household",
+   "unitQty": null,
+   "unitName": null
+  },
+  {
+   "id": "7jzkwt",
+   "name": "Gain Plus Laundry Detergent Liquid, Now with Odor Defense + OXI, Moonlight Breeze",
+   "brand": "Gain",
+   "price": 13.47,
+   "store": "walmart",
+   "kind": "ad",
+   "term": "laundry detergent",
+   "validTo": "2026-11-30",
+   "category": "Household",
+   "unitQty": null,
+   "unitName": null
+  },
+  {
+   "id": "lo0apo",
+   "name": "George Foreman 4‑Serving Electric Grill & Panini Press, Easy‑Clean Removable Dishwasher‑Safe Nonstick Plates",
+   "brand": "George Foreman",
+   "price": 39.96,
+   "store": "walmart",
+   "kind": "ad",
+   "term": "dishwasher",
+   "validTo": "2026-11-30",
+   "category": "Household",
+   "unitQty": null,
+   "unitName": null
+  },
+  {
+   "id": "qiw4yz",
+   "name": "Great Value Brown Gravy Mix",
+   "brand": "Great Value",
+   "price": 0.27,
+   "store": "walmart",
+   "kind": "ad",
+   "term": "gravy",
+   "validTo": "2026-11-30",
+   "category": "Pantry",
+   "unitQty": null,
+   "unitName": null
+  },
+  {
+   "id": "1kc1azw",
+   "name": "Great Value French Fried Onions Salad Topping",
+   "brand": "Great Value",
+   "price": 1.48,
+   "store": "walmart",
+   "kind": "ad",
+   "term": "onions",
+   "validTo": "2026-11-30",
+   "category": "Produce",
+   "unitQty": null,
+   "unitName": null
+  },
+  {
+   "id": "hoakb5",
+   "name": "Great Value Frozen Traditional 9-inch Pie Crusts and Pans",
+   "brand": "Great Value",
+   "price": 1.87,
+   "store": "walmart",
+   "kind": "ad",
+   "term": "pie",
+   "validTo": "2026-11-30",
+   "category": "Frozen",
+   "unitQty": null,
+   "unitName": null
+  },
+  {
+   "id": "ugibzd",
+   "name": "King's Hawaiian Original Hawaiian Sweet Dinner Rolls 24 Count, 24 oz, Shelf-Stable",
+   "brand": "King's Hawaiian",
+   "price": 6.97,
+   "store": "walmart",
+   "kind": "ad",
+   "term": "roll",
+   "validTo": "2026-11-30",
+   "category": "Bakery",
+   "unitQty": 24,
+   "unitName": "ea"
   },
   {
    "id": "1syazbk",
@@ -14098,36 +14111,75 @@
    "store": "walmart",
    "kind": "ad",
    "term": "disinfecting wipes",
-   "validTo": "2026-11-24",
+   "validTo": "2026-11-30",
    "category": "Household",
    "unitQty": 80,
    "unitName": "ea"
   },
   {
-   "id": "1pd3aeq",
-   "name": "Pine-Sol Multi-Surface Cleaner, Original",
-   "brand": "Pine-Sol",
-   "price": 11.28,
+   "id": "1x1cmjw",
+   "name": "Olay Body Wash, Moisture Ribbons Plus Shea + Peony Blossom",
+   "brand": "Olay",
+   "price": 6.97,
    "store": "walmart",
    "kind": "ad",
-   "term": "cleaner",
-   "validTo": "2026-11-24",
+   "term": "body wash",
+   "validTo": "2026-11-30",
    "category": "Household",
    "unitQty": null,
    "unitName": null
   },
   {
-   "id": "t545gl",
-   "name": "Stove Top Stuffing Mix, 1 Box, for Dinner Sides and Thanksgiving Dinner, Turkey, 6 oz",
+   "id": "1wz8c10",
+   "name": "Persil Advanced Clean Oxi+Odor Fighter Liquid Laundry Detergent",
+   "brand": "Persil",
+   "price": 17.97,
+   "store": "walmart",
+   "kind": "ad",
+   "term": "laundry detergent",
+   "validTo": "2026-11-30",
+   "category": "Household",
+   "unitQty": null,
+   "unitName": null
+  },
+  {
+   "id": "1dlwqka",
+   "name": "Puffs Facial Tissues Ultra Soft, Mega Cube, 72 Tissues Per Box",
+   "brand": "Puffs",
+   "price": 5.97,
+   "store": "walmart",
+   "kind": "ad",
+   "term": "tissues",
+   "validTo": "2026-11-30",
+   "category": "Household",
+   "unitQty": null,
+   "unitName": null
+  },
+  {
+   "id": "aeor15",
+   "name": "Scott ComfortPlus Toilet Paper",
+   "brand": "Scott",
+   "price": 7.47,
+   "store": "walmart",
+   "kind": "ad",
+   "term": "toilet paper",
+   "validTo": "2026-11-30",
+   "category": "Household",
+   "unitQty": null,
+   "unitName": null
+  },
+  {
+   "id": "mgs9em",
+   "name": "Stove Top Stuffing Mix, 1 Box, for Dinner Sides and Thanksgiving Dinner, Turkey",
    "brand": "Stove Top",
-   "price": 1.58,
+   "price": 1.98,
    "store": "walmart",
    "kind": "ad",
    "term": "stuffing",
-   "validTo": "2026-11-24",
+   "validTo": "2026-11-30",
    "category": "Pantry",
-   "unitQty": 6,
-   "unitName": "oz"
+   "unitQty": null,
+   "unitName": null
   },
   {
    "id": "1uuv4ma",
@@ -14137,33 +14189,20 @@
    "store": "walmart",
    "kind": "ad",
    "term": "cleaner",
-   "validTo": "2026-11-24",
+   "validTo": "2026-11-30",
    "category": "Household",
    "unitQty": null,
    "unitName": null
   },
   {
-   "id": "t6tslb",
-   "name": "The Pink Stuff Bathroom Foam Cleaner, Soap Scum and Hard Water Stain Remover for Shower, Tub and Sink",
-   "brand": "The Pink Stuff",
-   "price": 4.47,
-   "store": "walmart",
-   "kind": "ad",
-   "term": "cleaner",
-   "validTo": "2026-11-24",
-   "category": "Household",
-   "unitQty": null,
-   "unitName": null
-  },
-  {
-   "id": "yzkxdm",
-   "name": "WOWIPER 22\"+21\" Premium Silicone Wiper Blades 2 Pack – Water Repellent Beam Fit J-Hook – OEM All-Season for Toyota Tacoma 2005-2015 and more",
+   "id": "heu8hm",
+   "name": "WOWIPER 22\"+20\" Premium Silicone Wiper Blades 2 Pack – Water Repellent Beam Fit J-Hook – OEM All-Season for Toyota Tacoma 2017-2022 and more",
    "brand": "WOWIPER",
    "price": 17.99,
    "store": "walmart",
    "kind": "ad",
    "term": "",
-   "validTo": "2026-11-24",
+   "validTo": "2026-11-30",
    "category": "Beverages",
    "unitQty": null,
    "unitName": null
