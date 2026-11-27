@@ -1,14 +1,9 @@
 {
  "source": "This week's store ads (via Flipp)",
- "updated": "2026-11-26",
+ "updated": "2026-11-27",
  "zip": "84101",
  "place": "Salt Lake City, UT 84101",
  "stores": [
-  {
-   "id": "costco",
-   "name": "Costco",
-   "color": "#d50032"
-  },
   {
    "id": "walmart",
    "name": "Walmart",
@@ -20,24 +15,19 @@
    "color": "#2563eb"
   },
   {
-   "id": "sprouts",
-   "name": "Sprouts",
-   "color": "#3f8f4f"
-  },
-  {
-   "id": "lucky",
-   "name": "Lucky",
-   "color": "#dc2626"
-  },
-  {
    "id": "reams",
    "name": "Reams",
    "color": "#7c3aed"
   },
   {
-   "id": "smiths",
-   "name": "Smith's",
-   "color": "#0b5ed7"
+   "id": "sams",
+   "name": "Sam's Club",
+   "color": "#0067a0"
+  },
+  {
+   "id": "lucky",
+   "name": "Lucky",
+   "color": "#dc2626"
   },
   {
    "id": "maceys",
@@ -50,6 +40,16 @@
    "color": "#059669"
   },
   {
+   "id": "sprouts",
+   "name": "Sprouts",
+   "color": "#3f8f4f"
+  },
+  {
+   "id": "costco",
+   "name": "Costco",
+   "color": "#d50032"
+  },
+  {
    "id": "dans",
    "name": "Dan's Fresh Market",
    "color": "#0d9488"
@@ -60,9 +60,9 @@
    "color": "#dc2626"
   },
   {
-   "id": "sams",
-   "name": "Sam's Club",
-   "color": "#0067a0"
+   "id": "smiths",
+   "name": "Smith's",
+   "color": "#0b5ed7"
   },
   {
    "id": "dollargeneral",
@@ -11030,7 +11030,7 @@
    "store": "sams",
    "kind": "ad",
    "term": "razor",
-   "validTo": "2026-11-26",
+   "validTo": "2026-11-29",
    "category": "Household",
    "unitQty": null,
    "unitName": null
@@ -11043,8 +11043,60 @@
    "store": "sams",
    "kind": "ad",
    "term": "razor",
-   "validTo": "2026-11-26",
+   "validTo": "2026-11-29",
    "category": "Household",
+   "unitQty": null,
+   "unitName": null
+  },
+  {
+   "id": "18sapsh",
+   "name": "CeraVe Daily Moisturizing Cream Multi-Pack",
+   "brand": "CeraVe",
+   "price": 18.76,
+   "store": "sams",
+   "kind": "ad",
+   "term": "cream",
+   "validTo": "2026-11-29",
+   "category": "Dairy & Eggs",
+   "unitQty": null,
+   "unitName": null
+  },
+  {
+   "id": "15s2c9x",
+   "name": "Champion Lands' End Girls' Novelty Sweater",
+   "brand": "Champion",
+   "price": 11.98,
+   "store": "sams",
+   "kind": "ad",
+   "term": "novelty",
+   "validTo": "2026-11-29",
+   "category": "Frozen",
+   "unitQty": null,
+   "unitName": null
+  },
+  {
+   "id": "1fvlgij",
+   "name": "DHC Eye Cream and Eyelash Tonic Set",
+   "brand": "DHC",
+   "price": 37.98,
+   "store": "sams",
+   "kind": "ad",
+   "term": "cream",
+   "validTo": "2026-11-29",
+   "category": "Dairy & Eggs",
+   "unitQty": null,
+   "unitName": null
+  },
+  {
+   "id": "slp5dm",
+   "name": "DHC Lip Cream Infused with Olive Oil and Aloe, 2 pk.",
+   "brand": "DHC",
+   "price": 15.98,
+   "store": "sams",
+   "kind": "ad",
+   "term": "olive oil",
+   "validTo": "2026-11-29",
+   "category": "Pantry",
    "unitQty": null,
    "unitName": null
   },
@@ -11056,62 +11108,127 @@
    "store": "sams",
    "kind": "ad",
    "term": "trash",
-   "validTo": "2026-11-26",
+   "validTo": "2026-11-29",
    "category": "Other",
    "unitQty": 13.2,
    "unitName": "gal"
   },
   {
-   "id": "9xb2yp",
-   "name": "Golden State Fruit Deluxe Holiday Fruit and Chocolate 6-Box Gift Tower",
-   "brand": "Golden State Fruit",
-   "price": 55.94,
+   "id": "i0uua6",
+   "name": "Gillette Labs NFL Dallas Cowboys Men's Razor, Handle + 8 Cartridges",
+   "brand": "Gillette",
+   "price": 31.94,
    "store": "sams",
    "kind": "ad",
-   "term": "chocolate",
-   "validTo": "2026-11-26",
-   "category": "Snacks",
+   "term": "razor",
+   "validTo": "2026-11-29",
+   "category": "Household",
    "unitQty": null,
    "unitName": null
   },
   {
-   "id": "1g3eiw5",
-   "name": "Hickory Farms Grand Meat & Cheese Gift Crate",
-   "brand": "Hickory Farms",
-   "price": 72.75,
+   "id": "17nqf0i",
+   "name": "Laneige Lip Sleeping Mask EX, Berry",
+   "brand": "Laneige",
+   "price": 17.98,
    "store": "sams",
    "kind": "ad",
-   "term": "cheese",
-   "validTo": "2026-11-26",
-   "category": "Dairy & Eggs",
+   "term": "berry",
+   "validTo": "2026-11-29",
+   "category": "Produce",
    "unitQty": null,
    "unitName": null
   },
   {
-   "id": "wtxq02",
-   "name": "Lindt Chocolate Gift Tower",
-   "brand": "Lindt",
-   "price": 19.98,
-   "store": "sams",
-   "kind": "ad",
-   "term": "chocolate",
-   "validTo": "2026-11-26",
-   "category": "Snacks",
-   "unitQty": null,
-   "unitName": null
-  },
-  {
-   "id": "16z5xe8",
-   "name": "Medicube Collagen Niacinamide Jelly Cream",
+   "id": "1dchc1o",
+   "name": "Medicube Collagen Niacinamide Jelly Cream, 3.71 fl. oz.",
    "brand": "Medicube",
    "price": 12.98,
    "store": "sams",
    "kind": "ad",
    "term": "cream",
-   "validTo": "2026-11-26",
+   "validTo": "2026-11-29",
+   "category": "Dairy & Eggs",
+   "unitQty": 3.71,
+   "unitName": "fl oz"
+  },
+  {
+   "id": "m139yz",
+   "name": "Member's Mark Baby 15-Piece Organic Layette Gift Set",
+   "brand": "Member's Mark",
+   "price": 50,
+   "store": "sams",
+   "kind": "ad",
+   "term": "",
+   "validTo": "2026-11-29",
+   "category": "Other",
+   "unitQty": null,
+   "unitName": null
+  },
+  {
+   "id": "mjhtec",
+   "name": "MONDAY Haircare ORIGINAL Dry Shampoo Trio, 5.1 oz., 3 pk.",
+   "brand": "MONDAY Haircare",
+   "price": 14.98,
+   "store": "sams",
+   "kind": "ad",
+   "term": "shampoo",
+   "validTo": "2026-11-29",
+   "category": "Household",
+   "unitQty": 5.1,
+   "unitName": "oz"
+  },
+  {
+   "id": "3kprvq",
+   "name": "NatureWell Brightening Body Cream, 10 oz., 2 pk.",
+   "brand": "NatureWell",
+   "price": 10.98,
+   "store": "sams",
+   "kind": "ad",
+   "term": "cream",
+   "validTo": "2026-11-29",
+   "category": "Dairy & Eggs",
+   "unitQty": 10,
+   "unitName": "oz"
+  },
+  {
+   "id": "yxjonh",
+   "name": "NatureWell Nourishing Tinted Lip Butter, 4 pk.",
+   "brand": "NatureWell",
+   "price": 17.98,
+   "store": "sams",
+   "kind": "ad",
+   "term": "butter",
+   "validTo": "2026-11-29",
    "category": "Dairy & Eggs",
    "unitQty": null,
    "unitName": null
+  },
+  {
+   "id": "g8vugr",
+   "name": "NatureWell Shimmering Moisturizing Cream, 16 oz., 2 pk.",
+   "brand": "NatureWell",
+   "price": 17.98,
+   "store": "sams",
+   "kind": "ad",
+   "term": "cream",
+   "validTo": "2026-11-29",
+   "category": "Dairy & Eggs",
+   "unitQty": 16,
+   "unitName": "oz"
+  },
+  {
+   "id": "2t60x5",
+   "name": "NatureWell Tinted Lip Butter, 0.50 oz., 4 pk.",
+   "brand": "NatureWell",
+   "price": 17.94,
+   "store": "sams",
+   "kind": "ad",
+   "term": "butter",
+   "validTo": "2026-11-29",
+   "category": "Dairy & Eggs",
+   "unitQty": 0.5,
+   "unitName": "oz"
   },
   {
    "id": "14vo328",
@@ -11121,62 +11238,49 @@
    "store": "sams",
    "kind": "ad",
    "term": "cookie",
-   "validTo": "2026-11-26",
+   "validTo": "2026-11-29",
    "category": "Snacks",
    "unitQty": null,
    "unitName": null
   },
   {
-   "id": "n4w3y4",
-   "name": "Sharper Image Powerboost Roll Multi Area Massager",
-   "brand": "Sharper",
-   "price": 79.98,
+   "id": "t4d31l",
+   "name": "Tatcha Gold Camellia Beauty Oil, 1 fl. oz.",
+   "brand": "Tatcha",
+   "price": 72.84,
    "store": "sams",
    "kind": "ad",
-   "term": "roll",
-   "validTo": "2026-11-26",
-   "category": "Bakery",
-   "unitQty": null,
-   "unitName": null
+   "term": "",
+   "validTo": "2026-11-29",
+   "category": "Pantry",
+   "unitQty": 1,
+   "unitName": "fl oz"
   },
   {
-   "id": "3tjkvq",
-   "name": "Tui T Sutherland Wings of Fire Box Set, The Jade Mountain Prophecy (Books 6-10)",
-   "brand": "Tui T Sutherland",
-   "price": 23.98,
-   "store": "sams",
-   "kind": "ad",
-   "term": "wing",
-   "validTo": "2026-11-26",
-   "category": "Meat & Seafood",
-   "unitQty": null,
-   "unitName": null
-  },
-  {
-   "id": "5qse25",
-   "name": "Tui T. Sutherland Wings of Fire #5-#8: A Graphic Novel Box Set (Wings of Fire Graphic Novels #5-#8)",
-   "brand": "Tui T. Sutherland",
-   "price": 27.9,
-   "store": "sams",
-   "kind": "ad",
-   "term": "wing",
-   "validTo": "2026-11-26",
-   "category": "Meat & Seafood",
-   "unitQty": null,
-   "unitName": null
-  },
-  {
-   "id": "13fh3ii",
-   "name": "Waterford Lismore Essence Champagne Saucer, 9oz, Set of 2",
+   "id": "1mwptnv",
+   "name": "Waterford Love Forever Toasting Flutes, 7 oz, Set of 2",
    "brand": "Waterford",
    "price": 124.98,
    "store": "sams",
    "kind": "ad",
    "term": "",
-   "validTo": "2026-11-26",
+   "validTo": "2026-11-29",
    "category": "Beverages",
-   "unitQty": 9,
+   "unitQty": 7,
    "unitName": "oz"
+  },
+  {
+   "id": "u6m9di",
+   "name": "Woolrich Women's Wrap",
+   "brand": "Woolrich",
+   "price": 14.98,
+   "store": "sams",
+   "kind": "ad",
+   "term": "wrap",
+   "validTo": "2026-11-29",
+   "category": "Household",
+   "unitQty": null,
+   "unitName": null
   },
   {
    "id": "10uvs9m",
